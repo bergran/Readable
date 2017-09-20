@@ -1,4 +1,4 @@
-export const posts = (state = [], action) => {
+export const categories = (state = {}, action) => {
   switch (action.type) {
     default:
       return state
