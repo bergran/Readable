@@ -17,14 +17,16 @@ const addPostComment = (post, comment) => ({
   comment
 })
 
-const morePostScore = post => ({
+const morePostScore = (post, score = 1) => ({
   type: MORE_POST_SCORE,
-  post
+  post,
+  score
 })
 
-const lessPostScore = post => ({
+const lessPostScore = (post, score = 1) => ({
   type: LESS_POST_SCORE,
-  post
+  post,
+  score
 })
 
 const editBodyPost = (post, body) => ({

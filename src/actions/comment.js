@@ -18,12 +18,14 @@ const editCommentBody = (comment, body) => ({
 
 const moreCommentScore = (comment, score = 1) => ({
     type: MORE_COMMENT_SCORE,
-    comment
+    comment,
+    score
 })
 
 const lessCommentScore = (comment, score = 1) => ({
     type: LESS_COMMENT_SCORE,
-    comment
+    comment,
+    score
 })
 
 const deleteCommentPost = (comment, post) => ({
