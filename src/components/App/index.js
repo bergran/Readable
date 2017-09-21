@@ -5,8 +5,10 @@ import * as API from '../../utils/api'
 class App extends Component {
   componentDidMount() {
     API.getCategories()
-        .then(data => console.log(data))
-        .catch(error => console.log(error))
+      .then(categories => {
+        API.getPost(categories[0].name)
+          .then(data => console.log(data))
+      })
   }
 
   render() {

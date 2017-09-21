@@ -1,3 +1,4 @@
+export const FILL_POST = 'FILL_POST'
 export const ADD_POST = 'ADD_POST'
 export const ADD_POST_COMMENT = 'ADD_POST_COMMENT'
 export const MORE_POST_SCORE = 'MORE_POST_SCORE'
@@ -5,6 +6,11 @@ export const LESS_POST_SCORE = 'LESS_POST_SCORE'
 export const EDIT_BODY_POST = 'EDIT_BODY_POST'
 export const DELETE_POST_COMMENT = 'DELETE_POST_COMMENT'
 export const DELETE_POST = 'DELETE_POST'
+
+const fillPost = posts => {
+  type: FILL_POST,
+  posts
+}
 
 const addPost = post => ({
   type: ADD_POST,
@@ -49,6 +55,7 @@ const deletePost = post => ({
 // TODO: Add thunk methods to Middleware
 
 export {
+  fillPost,
   addPost,
   addPostComment,
   morePostScore,
