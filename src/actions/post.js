@@ -12,7 +12,7 @@ const addPost = post => ({
 })
 
 const addPostComment = (post, comment) => ({
-  type: ADD_POST_COMENT,
+  type: ADD_POST_COMMENT,
   post,
   comment
 })
@@ -33,7 +33,7 @@ const editBodyPost = (post, body) => ({
   body
 })
 
-const deletePostComment = post, comment => ({
+const deletePostComment = (post, comment) => ({
   type: DELETE_POST_COMMENT,
   post,
   comment
