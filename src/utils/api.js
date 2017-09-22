@@ -15,7 +15,17 @@ export const getCategories = () => {
     .then(raw => raw.categories)
 }
 
-export const getPost = category => {
+export const getPostsCategory = category => {
   return fetch(`http://${host}:3001/${category}/posts`, {headers})
     .then(data => data.json())
+}
+
+export const getAllPost = () => {
+  return fetch(`http://${host}:3001/posts`, {headers})
+      .then(data => data.json())
+}
+
+export const getCommentsPost = post => {
+    return fetch(`http://${host}:3001/posts/${post}/comments`, {headers})
+        .then(data => data.json())
 }
