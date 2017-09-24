@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css';
-import * as API from '../../utils/api'
+import Home from '../Home'
 
 class App extends Component {
-  componentDidMount() {
-    API.getCategories()
-      .then(categories => {
-        API.getPost(categories[0].name)
-          .then(data => console.log(data))
-      })
-  }
-
   render() {
     return (
-      <div className="App">
-        Hello world
-      </div>
-    );
+      <section className="App">
+        <BrowserRouter basename='/'>
+          <Route
+            exact
+            path='/'
+            component={Home}
+          />
+        </BrowserRouter>
+      </section>
+    )
   }
 }
 

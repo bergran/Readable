@@ -13,7 +13,7 @@ export const REMOVE_USER = 'REMOVE_USER'
 
 const addUser = username => ({
     type: ADD_USER,
-    username,
+    name: username,
 })
 
 const addUserPost = post => ({
@@ -48,7 +48,7 @@ const editScoreComment = comment => ({
 
 const removeScorePost = post => ({
     type: REMOVE_SCORE_POST,
-    POST
+    post
 })
 
 const removeScoreComment = comment => ({

@@ -7,10 +7,10 @@ export const EDIT_BODY_POST = 'EDIT_BODY_POST'
 export const DELETE_POST_COMMENT = 'DELETE_POST_COMMENT'
 export const DELETE_POST = 'DELETE_POST'
 
-const fillPost = posts => {
+const fillPost = posts => ({
   type: FILL_POST,
   posts
-}
+})
 
 const addPost = post => ({
   type: ADD_POST,
