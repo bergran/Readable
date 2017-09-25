@@ -44,7 +44,7 @@ class UserLog extends Component {
       <section>
         <form onSubmit={this.handleSubmit}>
           <Input
-            label='¿Cual es tu nombre?'
+            label="What's your name?"
             type='text'
             name='name'
             value={value}
