@@ -1,4 +1,4 @@
-import { FILL_CATEGORIES } from '../actions/categories'
+import { FILL_CATEGORIES, ADD_CATEGORY_POST } from '../actions/categories'
 
 export const categories = (state = {}, action) => {
   switch (action.type) {
@@ -13,6 +13,16 @@ export const categories = (state = {}, action) => {
           }
         }
       }, {})
+      case ADD_CATEGORY_POST:
+        const categoryId = action.category
+        const postId = action.post
+        return {
+            ...state,
+            [categoryId]: {
+                ...state[categoryId],
+                posts: [].concat(state[categoryId].posts, postId)
+            }
+        }
     default:
       return state
   }
