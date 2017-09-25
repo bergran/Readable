@@ -51,7 +51,7 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   const categoriesRaw = state.categories
-  const categories = Object.keys(categoriesRaw).map(key => {
+  const categories = Object.keys(categoriesRaw).filter(key => !categoriesRaw[key].deleted).map(key => {
     return {
       id: key,
       path: categoriesRaw[key].path,
