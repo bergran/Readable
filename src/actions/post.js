@@ -17,10 +17,9 @@ const addPost = post => ({
   post
 })
 
-const addPostComment = (post, comment) => ({
+const addPostComment = post => ({
   type: ADD_POST_COMMENT,
-  post,
-  comment
+  post
 })
 
 const morePostScore = (post, score = 1) => ({

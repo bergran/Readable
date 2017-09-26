@@ -2,7 +2,6 @@ import { fillCategories, addCategoryPost } from '../actions/categories'
 import { fillPost, addPostComment } from '../actions/post'
 import { addComment } from "../actions/comment";
 import * as API from '../utils/api'
-import {categories} from "../reducers/categories";
 
 export const fillCategoriesThunk = next => dispatch => {
   return API.getCategories()
@@ -28,7 +27,7 @@ export const fillCommentsPost = posts => dispatch => {
         commentsByPosts.forEach(commentsPost => {
             commentsPost.forEach(comment => {
                 dispatch(addComment(comment))
-                dispatch(addPostComment(comment.parentId, comment.id))
+                dispatch(addPostComment(comment.parentId))
             })
         })
     })

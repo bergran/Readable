@@ -14,10 +14,9 @@ const addCategory = category => ({
     category
 })
 
-const addCategoryPost = (category, post) => ({
+const addCategoryPost = category => ({
     type: ADD_CATEGORY_POST,
-    category,
-    post
+    category
 })
 
 const removeCategoryPost = (category, post) => ({

@@ -9,7 +9,7 @@ export const categories = (state = {}, action) => {
           ...prevState,
           [category.name]: {
             path: category.path,
-            posts: []
+            posts: 0
           }
         }
       }, {})
@@ -20,7 +20,7 @@ export const categories = (state = {}, action) => {
             ...state,
             [categoryId]: {
                 ...state[categoryId],
-                posts: [].concat(state[categoryId].posts, postId)
+                posts: state[categoryId].posts + 1
             }
         }
     default:

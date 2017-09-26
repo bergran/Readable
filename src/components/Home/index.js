@@ -16,9 +16,14 @@ class Home extends Component {
 
   componentDidMount () {
     this.props.fillCategoriesPosts()
-        .then(data => {
+        .then(() => {
           this.setState({loading: false})
         })
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+      // only re-render if username exist and API is loaded
+      return (nextProps.user.name.length > 0 && !nextState.loading)
   }
 
   render() {
@@ -51,17 +56,22 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   const categoriesRaw = state.categories
-  const categories = Object.keys(categoriesRaw).filter(key => !categoriesRaw[key].deleted).map(key => {
-    return {
+  const categories = Object.keys(categoriesRaw).filter(key => !categoriesRaw[key].deleted).map(key => ({
       id: key,
       path: categoriesRaw[key].path,
       posts: categoriesRaw[key].posts
-    }
-  })
+  }))
+  const posts = state.posts.filter(post => !post.deleted).map(post => ({
+      title: post.title,
+      timestamp: post.timestamp,
+      votes: post.voteScore,
+      author: post.author,
+      comments: post.comments
+    }))
   return {
     categories: categories,
     user: state.user,
-    posts: state.posts
+    posts: posts
   }
 }
 
