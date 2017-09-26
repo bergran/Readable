@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import UserLog from '../UserLog'
 import { fillCategoriesThunk, fillCategoriesPosts } from '../../thunks/Home'
-import { ListItems } from "../ListItems/index";
+import ListItems from "../ListItems/index";
 
 
 class Home extends Component {
@@ -27,9 +27,8 @@ class Home extends Component {
   }
 
   render() {
-    const { user, categories, posts } = this.props
+    const { user, categories, posts, history } = this.props
     const { loading } = this.state
-    console.log(loading)
     return (
       <section className='home'>
         {
@@ -40,10 +39,12 @@ class Home extends Component {
                   <ListItems
                       title='categories'
                       items={categories}
+                      push={history.push}
                   />
                   <ListItems
                       title='posts'
                       items={posts}
+                      push={history.push}
                   />
                 </section>
             :
@@ -62,6 +63,7 @@ const mapStateToProps = state => {
       posts: categoriesRaw[key].posts
   }))
   const posts = state.posts.filter(post => !post.deleted).map(post => ({
+      id: post.id,
       title: post.title,
       timestamp: post.timestamp,
       votes: post.voteScore,
