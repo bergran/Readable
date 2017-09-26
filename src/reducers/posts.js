@@ -4,7 +4,6 @@ export const posts = (state = [], action) => {
   switch (action.type) {
     case FILL_POST:
       return [].concat(
-        state,
         action.posts.map(posts => ({...posts, comments: 0}))
       )
     case ADD_POST_COMMENT:
