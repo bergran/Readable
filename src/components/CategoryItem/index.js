@@ -1,19 +1,24 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-export const Category = props => {
-    const { id, path, posts } = props
-    console.log(props)
-    return (
-        <section className={'category'}>
-            <Link
-                to={ path }
-            >
-                <h1>{ id }</h1>
-                <section>
-                    Posts number: {posts.length}
-                </section>
-            </Link>
-        </section>
-    )
+class Category extends Component {
+
+    handleClick = () => {
+        const { onClick, path } = this.props
+        onClick(`categories/${path}`)
+    }
+
+    render () {
+        const { id, posts } = this.props
+        return (
+            <section className={'category'} onClick={this.handleClick}>
+                    <h1>{ id }</h1>
+                    <section>
+                        Posts number: {posts}
+                    </section>
+            </section>
+        )
+    }
 }
+
+export default Category
