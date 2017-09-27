@@ -4,10 +4,14 @@ import PostItem from "../PostItem/index";
 
 class ListItems extends Component {
 
+    static defaultProps = {
+        title: ''
+    }
+
     handleClick = to => this.props.push(to)
 
     render () {
-        const { title, items } = this.props
+        const { title, items, type } = this.props
         return (
             <div className='list-item'>
                 <h1 className='title'>
@@ -18,7 +22,7 @@ class ListItems extends Component {
                         {
                             items.map(item =>
                                 <li key={item.id}>
-                                    { title === 'categories' ?
+                                    { type === 'categories' ?
                                         <Category
                                             onClick={this.handleClick}
                                             {...item}

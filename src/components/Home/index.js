@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import UserLog from '../UserLog'
-import { fillCategoriesThunk, fillCategoriesPosts } from '../../thunks/Home'
+import { fillCategoriesPosts } from '../../thunks/thunks'
 import ListItems from "../ListItems/index";
 
 
@@ -38,11 +38,13 @@ class Home extends Component {
                 <section>
                   <ListItems
                       title='categories'
+                      type='categories'
                       items={categories}
                       push={history.push}
                   />
                   <ListItems
                       title='posts'
+                      type='posts'
                       items={posts}
                       push={history.push}
                   />

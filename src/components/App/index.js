@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import './App.css';
 import Home from '../Home'
+import CategoryPage from "../CategoryPage";
 
 class App extends Component {
   render() {
     return (
       <section className="App">
-        <BrowserRouter basename='/'>
           <Route
             exact
             path='/'
             component={Home}
           />
-        </BrowserRouter>
+          <Route
+            exact
+            path='/categories/:category'
+            component={CategoryPage}
+          />
       </section>
     )
   }
