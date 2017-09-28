@@ -7,14 +7,11 @@ import { fillPostsThunk } from "../../thunks/thunks";
 class CategoryPage extends Component {
 
     componentDidMount () {
-        if (this.props.posts.length > 0) {
-            console.log('qewr')
-        } else {
+        if (this.props.posts.length < 1) {
             const { match, fillPostByCategory } = this.props
             const category = match.params.category
             fillPostByCategory(category)
         }
-
     }
 
     render () {
@@ -22,20 +19,23 @@ class CategoryPage extends Component {
         return (
             <section>
                 <h1>{ Capitalize(match.params.category) }</h1>
-                {
-                    posts.length > 0 ?
-                        <ListItems
-                            type='post'
-                            items={posts}
-                            push={history.push}
-                        />
+                <section>
+                    <button role='button' onClick={() => history.push('/')}>Home</button>
+                    <button role='button' onClick={history.goBack}>Back</button>
+                    {
+                        posts.length > 0 ?
+                            <ListItems
+                                type='post'
+                                items={posts}
+                                push={history.push}
+                            />
                             :
-                        <section>
-                            No Posts :(
-                        </section>
+                            <section>
+                                No Posts :(
+                            </section>
 
-                }
-
+                    }
+                </section>
             </section>
         )
     }

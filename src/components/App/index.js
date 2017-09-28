@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import './App.css';
 import Home from '../Home'
 import CategoryPage from "../CategoryPage";
+import PostPage from "../PostPage";
 
 class App extends Component {
   render() {
@@ -17,6 +18,11 @@ class App extends Component {
             exact
             path='/categories/:category'
             component={CategoryPage}
+          />
+          <Route
+              exact
+              path='/posts/:post'
+              component={PostPage}
           />
       </section>
     )

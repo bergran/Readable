@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 class PostItem extends Component {
 
     handleClick = () => {
         const { onClick, id } = this.props
-        onClick(`posts/${id}`)
+        onClick(`/posts/${id}`)
     }
 
     render () {

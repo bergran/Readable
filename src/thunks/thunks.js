@@ -3,7 +3,17 @@ import { fillPost, addPostComment } from '../actions/post'
 import { addComment } from "../actions/comment";
 import * as API from '../utils/api'
 
+const updateTime = {
+    category: null,
+    post: null,
+    comment: null
+}
+
+const timeToUpdate = process.env.REACT_APP_UPDATE_TIME_INTERVAL
+
 export const fillCategoriesThunk = next => dispatch => {
+    const dateDiff = (Date.now() - updateTime.category) > timeToUpdate
+    if (updateTime.category && updateTime.category < 120)
   return API.getCategories()
     .then(categories => {
         dispatch(fillCategories(categories))
