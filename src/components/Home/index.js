@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import UserLog from '../UserLog'
-import { fillCategoriesPosts } from '../../thunks/thunks'
 import ListItems from "../ListItems/index";
+import { updaterThunk, fillCategoriesThunk, fillPostsThunk } from "../../thunks/thunks";
 
 
 class Home extends Component {
@@ -15,10 +15,16 @@ class Home extends Component {
   }
 
   componentDidMount () {
-    this.props.fillCategoriesPosts()
+    const { category, posts } = this.props.updateTime
+    const { fillCategoriesPosts, fillPost } = this.props
+      console.log('post', posts)
+    Promise.all([
+        fillCategoriesPosts(category),
+        fillPost(posts)
+    ])
         .then(() => {
-          this.setState({loading: false})
-        })
+            this.setState({loading: false})
+          })
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -57,12 +63,11 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps)=> {
   const categoriesRaw = state.categories
   const categories = Object.keys(categoriesRaw).filter(key => !categoriesRaw[key].deleted).map(key => ({
       id: key,
       path: categoriesRaw[key].path,
-      posts: categoriesRaw[key].posts
   }))
   const posts = state.posts.filter(post => !post.deleted).map(post => ({
       id: post.id,
@@ -75,12 +80,18 @@ const mapStateToProps = state => {
   return {
     categories: categories,
     user: state.user,
-    posts: posts
+    posts: posts,
+    updateTime: state.updateTime
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  fillCategoriesPosts: () => dispatch(fillCategoriesPosts())
-})
+const mapDispatchToProps = dispatch => {
+    const fillCategory = updaterThunk(fillCategoriesThunk)
+    const fillPosts = updaterThunk(fillPostsThunk)
+    return {
+        fillCategoriesPosts: time => dispatch(fillCategory(time)),
+        fillPost: time => dispatch(fillPosts(time))
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

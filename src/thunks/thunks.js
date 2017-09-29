@@ -1,23 +1,16 @@
 import { fillCategories, addCategoryPost } from '../actions/categories'
 import { fillPost, addPostComment } from '../actions/post'
+import { updateTime } from "../actions/updateTime";
 import { addComment } from "../actions/comment";
 import * as API from '../utils/api'
-
-const updateTime = {
-    category: null,
-    post: null,
-    comment: null
-}
 
 const timeToUpdate = process.env.REACT_APP_UPDATE_TIME_INTERVAL
 
 export const fillCategoriesThunk = next => dispatch => {
-    const dateDiff = (Date.now() - updateTime.category) > timeToUpdate
-    if (updateTime.category && updateTime.category < 120)
   return API.getCategories()
     .then(categories => {
         dispatch(fillCategories(categories))
-        return categories
+        return Promise.resolve('category')
     })
 }
 
@@ -25,7 +18,7 @@ export const fillPostsThunk = next => dispatch => {
     const posts = API.getAllPost()
         .then(postsRaw => {
             dispatch(fillPost(postsRaw))
-            return postsRaw
+            return Promise.resolve('posts')
         })
     return Promise.resolve(posts)
 }
@@ -36,10 +29,10 @@ export const fillCommentsPost = posts => dispatch => {
         ).then(commentsByPosts => {
         commentsByPosts.forEach(commentsPost => {
             commentsPost.forEach(comment => {
-                dispatch(addComment(comment))
                 dispatch(addPostComment(comment.parentId))
             })
         })
+        Promise.resolve('posts')
     })
 }
 
@@ -52,10 +45,22 @@ export const fillCategoriesPosts = next => dispatch => {
         dispatch(addCategoryPost(post.category, post.id))
     })
     dispatch(fillCommentsPost(posts))
-
   })
-
-
   return Promise.resolve()
 }
 
+export const updaterThunk = thunkAction => (time, next = {}) =>  {
+    const wrapper = dispatch => {
+        if (!time || ((Date.now() - time) / 1000) >= timeToUpdate) {
+            dispatch(thunkAction(...next))
+                .then(object => {
+                    const newUpdate = Date.now()
+                    dispatch(updateTime(newUpdate,  object))
+                })
+            return Promise.resolve()
+        } else {
+            return Promise.resolve()
+        }
+    }
+    return wrapper
+}

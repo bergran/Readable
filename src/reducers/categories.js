@@ -9,20 +9,9 @@ export const categories = (state = {}, action) => {
           ...prevState,
           [category.name]: {
             path: category.path,
-            posts: 0
           }
         }
       }, {})
-      case ADD_CATEGORY_POST:
-        const categoryId = action.category
-        const postId = action.post
-        return {
-            ...state,
-            [categoryId]: {
-                ...state[categoryId],
-                posts: state[categoryId].posts + 1
-            }
-        }
     default:
       return state
   }

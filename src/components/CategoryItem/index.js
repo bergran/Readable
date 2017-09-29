@@ -8,13 +8,10 @@ class Category extends Component {
     }
 
     render () {
-        const { id, posts } = this.props
+        const { id } = this.props
         return (
             <section className={'category'} onClick={this.handleClick}>
                     <h1>{ id }</h1>
-                    <section>
-                        Posts number: {posts}
-                    </section>
             </section>
         )
     }
