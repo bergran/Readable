@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <section className="App">
           <Nav>
-            
+
           </Nav>
           <Route
             exact

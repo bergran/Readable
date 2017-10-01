@@ -1,4 +1,4 @@
-import { FILL_CATEGORIES, ADD_CATEGORY_POST } from '../actions/categories'
+import { FILL_CATEGORIES } from '../actions/categories'
 
 export const categories = (state = {}, action) => {
   switch (action.type) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ListItems from "../ListItems/index";
 import { Capitalize } from '../../utils/tools'
-import { updaterThunk ,fillPostsThunk } from "../../thunks/thunks";
+import { updaterThunk ,fillCommentsPost } from "../../thunks/thunks";
 
 class CategoryPage extends Component {
 
@@ -14,11 +14,10 @@ class CategoryPage extends Component {
     }
 
     componentDidMount () {
-        const { match, fillPostByCategory, updateTime } = this.props
+        const { match, fillcomments, updateTime } = this.props
         const category = match.params.category
-        fillPostByCategory(updateTime.posts, category)
+        fillcomments(updateTime, category)
             .then(data => {
-                console.log('acago')
                 this.setState({isLoading: false})
             })
     }
@@ -30,7 +29,7 @@ class CategoryPage extends Component {
             <section>
                 <h1>{ Capitalize(match.params.category) }</h1>
                 <section>
-                    <button role='button' onClick={history.goBack}>Back</button>
+                    <button onClick={history.goBack}>Back</button>
                     {
                         !isLoading ?
                             <ListItems
@@ -51,7 +50,7 @@ class CategoryPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { category, updateTime } = ownProps.match.params
+    const { category } = ownProps.match.params
     const posts = state.posts.filter(post => post.category === category && !post.deleted)
     return {
         posts: posts,
@@ -60,9 +59,9 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => {
-    const fillPost = updaterThunk(fillPostsThunk)
+    const fillComments = updaterThunk(fillCommentsPost)
     return {
-        fillPostByCategory: (time, category)=> dispatch(fillPost(time, category))
+        fillcomments: (time, category)=> dispatch(fillComments(time, category))
     }
 }
 

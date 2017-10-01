@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import UserLog from '../UserLog'
 import ListItems from "../ListItems/index";
 import { updaterThunk, fillCategoriesThunk, fillPostsThunk } from "../../thunks/thunks";
 
