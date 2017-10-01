@@ -15,11 +15,10 @@ class Home extends Component {
 
   componentDidMount () {
     const { category, posts } = this.props.updateTime
-    const { fillCategoriesPosts, fillPost } = this.props
-      console.log('post', posts)
+    const { fillCategoriesPosts, fillPost, updateTime } = this.props
     Promise.all([
-        fillCategoriesPosts(category),
-        fillPost(posts)
+        fillCategoriesPosts(updateTime ,category),
+        fillPost( updateTime, posts)
     ])
         .then(() => {
             this.setState({isLoading: false})
@@ -82,7 +81,7 @@ const mapDispatchToProps = dispatch => {
     const fillPosts = updaterThunk(fillPostsThunk)
     return {
         fillCategoriesPosts: time => dispatch(fillCategory(time)),
-        fillPost: time => dispatch(fillPosts(time))
+        fillPost: time => dispatch(fillPosts(time)),
     }
 }
 

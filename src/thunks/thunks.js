@@ -1,5 +1,5 @@
 import { fillCategories } from '../actions/categories'
-import { fillPost } from '../actions/post'
+import { fillPost, fillPostCategory } from '../actions/post'
 import { updateTime } from "../actions/updateTime";
 import { fillComments} from "../actions/comment";
 import * as API from '../utils/api'
@@ -28,6 +28,13 @@ export const fillCommentsPost = post => dispatch => {
         })
 }
 
+export const fillPostCategoryThunk = category => dispatch => {
+    return API.getPostsCategory(category)
+        .then(posts => {
+            dispatch(fillPostCategory(category, posts))
+        })
+}
+
 export const updaterThunk = thunkAction => (timeRaw, next = '') =>  {
     const wrapper = dispatch => {
         const time = timeRaw && timeRaw[`${thunkAction.name}${next}`]
@@ -35,7 +42,6 @@ export const updaterThunk = thunkAction => (timeRaw, next = '') =>  {
             dispatch(thunkAction(next))
                 .then(object => {
                     const newUpdate = Date.now()
-                    console.log('next', next)
                     dispatch(updateTime(newUpdate,  `${thunkAction.name}${next}`))
                 })
         }

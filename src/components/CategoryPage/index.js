@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ListItems from "../ListItems/index";
 import { Capitalize } from '../../utils/tools'
-import { updaterThunk ,fillCommentsPost } from "../../thunks/thunks";
+import { updaterThunk ,fillPostCategoryThunk } from "../../thunks/thunks";
 
 class CategoryPage extends Component {
 
@@ -14,9 +14,9 @@ class CategoryPage extends Component {
     }
 
     componentDidMount () {
-        const { match, fillcomments, updateTime } = this.props
+        const { match, fillPosts, updateTime } = this.props
         const category = match.params.category
-        fillcomments(updateTime, category)
+        fillPosts(updateTime, category)
             .then(data => {
                 this.setState({isLoading: false})
             })
@@ -59,9 +59,9 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => {
-    const fillComments = updaterThunk(fillCommentsPost)
+    const fillPosts = updaterThunk(fillPostCategoryThunk)
     return {
-        fillcomments: (time, category)=> dispatch(fillComments(time, category))
+        fillPosts: (time, category)=> dispatch(fillPosts(time, category))
     }
 }
 
