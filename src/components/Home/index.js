@@ -73,7 +73,7 @@ const mapStateToProps = (state, ownProps)=> {
       id: post.id,
       title: post.title,
       timestamp: post.timestamp,
-      votes: post.voteScore,
+      voteScore: post.voteScore,
       author: post.author,
       comments: post.comments
     }))

@@ -18,24 +18,31 @@ class ListItems extends Component {
                     { title }
                 </h1>
                 <div className='list'>
-                    <ul>
-                        {
-                            items.map(item =>
-                                <li key={item.id}>
-                                    { type === 'categories' ?
-                                        <Category
-                                            onClick={this.handleClick}
-                                            {...item}
-                                        /> :
-                                        <PostItem
-                                            onClick={this.handleClick}
-                                            {...item}
-                                        />
-                                     }
-                                </li>
-                            )
-                        }
-                    </ul>
+                    {
+                        items.length > 0 ?
+                            <ul>
+                                {
+                                    items.map(item =>
+                                        <li key={item.id}>
+                                            { type === 'categories' ?
+                                                <Category
+                                                    onClick={this.handleClick}
+                                                    {...item}
+                                                /> :
+                                                <PostItem
+                                                    onClick={this.handleClick}
+                                                    {...item}
+                                                />
+                                            }
+                                        </li>
+                                    )
+                                }
+                            </ul> :
+                            <section>
+                                {`No ${type}`}
+                            </section>
+                    }
+
                 </div>
             </div>
         )

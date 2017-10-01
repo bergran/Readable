@@ -57,10 +57,8 @@ export const updaterThunk = thunkAction => (time, next = {}) =>  {
                     const newUpdate = Date.now()
                     dispatch(updateTime(newUpdate,  object))
                 })
-            return Promise.resolve()
-        } else {
-            return Promise.resolve()
         }
+        return Promise.resolve(null)
     }
     return wrapper
 }
