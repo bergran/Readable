@@ -10,7 +10,7 @@ class Home extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      loading: true
+      isLoading: true
     }
   }
 
@@ -23,24 +23,17 @@ class Home extends Component {
         fillPost(posts)
     ])
         .then(() => {
-            this.setState({loading: false})
+            this.setState({isLoading: false})
           })
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-      // only re-render if username exist and API is loaded
-      return (nextProps.user.name.length > 0 && !nextState.loading)
-  }
-
   render() {
-    const { user, categories, posts, history } = this.props
-    const { loading } = this.state
+    const { categories, posts, history } = this.props
+    const { isLoading } = this.state
     return (
       <section className='home'>
         {
-          !user.name ?
-            <UserLog /> :
-            (user.name && !loading) ?
+            !isLoading ?
                 <section>
                   <ListItems
                       title='categories'

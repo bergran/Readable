@@ -2,28 +2,37 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ListItems from "../ListItems/index";
 import { Capitalize } from '../../utils/tools'
-import { fillPostsThunk } from "../../thunks/thunks";
+import { updaterThunk ,fillPostsThunk } from "../../thunks/thunks";
 
 class CategoryPage extends Component {
 
-    componentDidMount () {
-        if (this.props.posts.length < 1) {
-            const { match, fillPostByCategory } = this.props
-            const category = match.params.category
-            fillPostByCategory(category)
+    constructor (props) {
+        super(props)
+        this.state = {
+            isLoading: true
         }
+    }
+
+    componentDidMount () {
+        const { match, fillPostByCategory, updateTime } = this.props
+        const category = match.params.category
+        fillPostByCategory(updateTime.posts, category)
+            .then(data => {
+                console.log('acago')
+                this.setState({isLoading: false})
+            })
     }
 
     render () {
         const { posts, history, match } = this.props
+        const { isLoading } = this.state
         return (
             <section>
                 <h1>{ Capitalize(match.params.category) }</h1>
                 <section>
-                    <button role='button' onClick={() => history.push('/')}>Home</button>
                     <button role='button' onClick={history.goBack}>Back</button>
                     {
-                        posts.length > 0 ?
+                        !isLoading ?
                             <ListItems
                                 type='post'
                                 items={posts}
@@ -31,7 +40,7 @@ class CategoryPage extends Component {
                             />
                             :
                             <section>
-                                No Posts :(
+                                Loading...
                             </section>
 
                     }
@@ -42,15 +51,19 @@ class CategoryPage extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { category } = ownProps.match.params
+    const { category, updateTime } = ownProps.match.params
     const posts = state.posts.filter(post => post.category === category && !post.deleted)
     return {
-        posts: posts
+        posts: posts,
+        updateTime: state.updateTime
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    fillPostByCategory: category => dispatch(fillPostsThunk(category))
-})
+const mapDispatchToProps = dispatch => {
+    const fillPost = updaterThunk(fillPostsThunk)
+    return {
+        fillPostByCategory: (time, category)=> dispatch(fillPost(time, category))
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage)
