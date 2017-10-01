@@ -4,11 +4,15 @@ import './App.css';
 import Home from '../Home'
 import CategoryPage from "../CategoryPage";
 import PostPage from "../PostPage";
+import Nav from '../Nav'
 
 class App extends Component {
   render() {
     return (
       <section className="App">
+          <Nav>
+            
+          </Nav>
           <Route
             exact
             path='/'
