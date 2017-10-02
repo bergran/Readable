@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
+import NavBarContainer from '../NavBarContainer'
+import NavBarSection from '../NavBarSection'
 
 class NavBar extends Component {
     render () {
         return (
             <section className='navbar'>
-                hello world
+                <NavBarSection
+                    path='/'
+                    title='Home'
+                />
             </section>
         )
     }

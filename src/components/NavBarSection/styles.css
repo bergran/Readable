@@ -1,0 +1,9 @@
+.nav-bar-section {
+    width: 6em;
+}
+
+.nav-bar-title {
+    box-sizing: border-box;
+    margin: auto;
+    text-align: center;
+}
