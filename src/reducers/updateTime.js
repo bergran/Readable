@@ -1,11 +1,6 @@
 import { UPDATE_TIME } from '../actions/updateTime'
 
-const initialState = {
-    category: null,
-    posts: null,
-    comments: null
-
-}
+const initialState = {}
 
 export const updateTime = (state = initialState, action) => {
     switch (action.type){
