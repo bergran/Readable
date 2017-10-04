@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import Category from "../CategoryItem/index";
-import PostItem from "../PostItem/index";
+import { SwitchItem } from '../SwitchItem'
 
 class ListItems extends Component {
 
@@ -24,12 +23,9 @@ class ListItems extends Component {
                                 {
                                     items.map(item =>
                                         <li key={item.id}>
-                                            { type === 'categories' ?
-                                                <Category
-                                                    onClick={this.handleClick}
-                                                    {...item}
-                                                /> :
-                                                <PostItem
+                                            {
+                                                <SwitchItem
+                                                    type={type}
                                                     onClick={this.handleClick}
                                                     {...item}
                                                 />

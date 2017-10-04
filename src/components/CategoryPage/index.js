@@ -29,11 +29,10 @@ class CategoryPage extends Component {
             <section>
                 <h1>{ Capitalize(match.params.category) }</h1>
                 <section>
-                    <button onClick={history.goBack}>Back</button>
                     {
                         !isLoading ?
                             <ListItems
-                                type='post'
+                                type='posts'
                                 items={posts}
                                 push={history.push}
                             />
