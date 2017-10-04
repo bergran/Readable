@@ -5,7 +5,6 @@ import Home from '../Home'
 import CategoryPage from "../CategoryPage";
 import PostPage from "../PostPage";
 import Nav from '../Nav'
-import NavBarSection from '../NavBarSection'
 import NavBarContainer from "../NavBarContainer/index";
 
 

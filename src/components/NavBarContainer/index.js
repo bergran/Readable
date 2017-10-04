@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 import NavBarSection from '../NavBarSection'
 import './styles.css'
 import justify from '../../assest/glyph/glyphicons-114-justify.png'
+import PropTypes from 'prop-types'
+
+/**
+ * Component that renders a list of nav-bar section
+ *
+ * @param classNames (array): contains an array of classNames
+ * @param sections (array): contains an objects array that contains information about section
+ **/
 
 class NavBarContainer extends Component {
     static defaultProps = {
@@ -34,6 +42,11 @@ class NavBarContainer extends Component {
             </section>
         )
     }
+}
+
+NavBarContainer.propTypes = {
+    sections: PropTypes.array.isRequired,
+    classNames: PropTypes.array,
 }
 
 export default NavBarContainer
