@@ -1,0 +1,13 @@
+.nav-bar-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #434385;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-bar-container-item {
+    border-right: solid #fff;
+}

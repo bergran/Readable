@@ -5,14 +5,28 @@ import Home from '../Home'
 import CategoryPage from "../CategoryPage";
 import PostPage from "../PostPage";
 import Nav from '../Nav'
-import NavBar from '../NavBar'
+import NavBarSection from '../NavBarSection'
+import NavBarContainer from "../NavBarContainer/index";
+
 
 class App extends Component {
   render() {
     return (
       <section className="App">
-          <Nav>
-              <NavBar />
+          <Nav
+              title='Readable'
+          >
+              <NavBarContainer
+                title={'menu'}
+                sections={[
+                    {title: 'Home', path: '/'},
+                    {title: 'New Post', path: '/'},
+                    {title: 'New Post', path: '/'},
+                    {title: 'New Post', path: '/'},
+                    {title: 'New Post', path: '/'},
+                    {title: 'New Post', path: '/'},
+                ]}
+              />
           </Nav>
           <Route
             exact

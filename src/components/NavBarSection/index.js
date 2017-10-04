@@ -4,6 +4,10 @@ import './styles.css'
 
 class NavBarSection extends Component {
 
+    static defaultProps = {
+        classNames: []
+    }
+
     shouldComponentUpdate () {
         return false
     }
@@ -14,10 +18,16 @@ class NavBarSection extends Component {
     }
 
     render () {
-        const { title } = this.props
+        const { title, classNames } = this.props
+        const styles = classNames.join(' ')
         return (
-            <section className='nav-bar-section' onClick={this.handleClick}>
-                <h1 className='nav-bar-title'>{ title }</h1>
+            <section
+                className={`nav-bar-section nav-bar-text-white ${styles}`}
+                onClick={this.handleClick}
+            >
+                <section className="nav-bar-header">
+                    <h1 className='nav-bar-title'>{ title }</h1>
+                </section>
             </section>
         )
     }

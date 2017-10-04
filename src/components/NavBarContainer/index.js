@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
 import NavBarSection from '../NavBarSection'
+import './styles.css'
 
 class NavBarContainer extends Component {
+    static defaultProps = {
+        classNames: []
+    }
+
     render () {
-        const { title, path, sections } = this.props
+        const { sections, classNames } = this.props
+        const classRaw = classNames.join(' ')
         return (
-            <section>
-                <NavBarSection
-                    title={title}
-                    path={path}
-                />
+            <ul className={`nav-bar-container ${classRaw}`}>
                 {
-                    sections &&
-                    <ul>
-                        {
-                            sections.map((section, index)=> <NavBarSection key={index} {...section} />)
-                        }
-                    </ul>
+                    sections.map((section, index) => <li className='nav-bar-container-item' key={index}>
+                        <NavBarSection {...section} />
+                    </li>)
                 }
-            </section>
+            </ul>
         )
     }
 }
+
+export default NavBarContainer
