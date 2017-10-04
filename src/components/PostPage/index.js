@@ -1,10 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { fillPostsThunk, fillCommentsPost } from '../../thunks/thunks'
 
 class PostPage extends Component {
+
+    componentDidMount () {
+        const postId = this.props.match.params.post
+        const { fillComments, fillPost } = this.props
+        Promise.all([
+            fillComments(postId),
+            fillPost(postId)
+        ])
+
+    }
+
     render () {
+        const { post, comment } = this.props
         return (
-            <section>
+            <section className={'post-page-container'}>
                 Hello world
             </section>
         )
@@ -21,4 +34,9 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps)(PostPage)
+const mapDispatchToProps = dispatch => ({
+    fillPost: post => dispatch(fillPostsThunk(post)),
+    fillComments: post => dispatch(fillCommentsPost(post))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostPage)
