@@ -5,7 +5,8 @@ import './styles.css'
 class NavBarSection extends Component {
 
     static defaultProps = {
-        classNames: []
+        classNames: [],
+        goBack: false
     }
 
     shouldComponentUpdate () {
@@ -13,8 +14,9 @@ class NavBarSection extends Component {
     }
 
     handleClick = () => {
-        const { history, path } = this.props
-        path && history.push(path)
+        const { history, path, goBack } = this.props;
+        (path && !goBack)&& history.push(path)
+        goBack && history.goBack()
     }
 
     render () {

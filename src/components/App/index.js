@@ -20,11 +20,7 @@ class App extends Component {
                 title={'menu'}
                 sections={[
                     {title: 'Home', path: '/'},
-                    {title: 'New Post', path: '/'},
-                    {title: 'New Post', path: '/'},
-                    {title: 'New Post', path: '/'},
-                    {title: 'New Post', path: '/'},
-                    {title: 'New Post', path: '/'},
+                    {title: 'Create post', path: '/'},
                 ]}
               />
           </Nav>
