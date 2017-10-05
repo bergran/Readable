@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fillPostsThunk, fillCommentsPost } from '../../thunks/thunks'
 import { Link } from 'react-router-dom'
+import ListItems from '../ListItems'
+import '../../assest/font-awesome/css/font-awesome.min.css'
 
 class PostPage extends Component {
 
@@ -25,7 +27,10 @@ class PostPage extends Component {
                 </section>
             )
         } else {
-            const { comment } = this.props
+            const { comments } = this.props
+            const date = new Date(post.timestamp)
+            const day = date.getDay().toString().padStart(2, '0')
+            const month = date.getMonth().toString().padStart(2, '0')
             return (
                 <section className={'post-page-container'}>
                     <section className={'post-page-header'}>
@@ -37,19 +42,31 @@ class PostPage extends Component {
                         </h1>
                         <section className={'post-page-header-subtitle'}>
                             <article className={'post-page-header-article'}>
-                                <p><bold>Date:</bold> {post.timestamp}</p>
+                                <p><bold>Date:</bold> {`${month}/${day}/${date.getFullYear()}`}</p>
                             </article>
                             <article className={'post-page-header-article'}>
                                 <p><bold>Category:</bold> <Link to={`/categories/${post.category}`}>{post.category}</Link></p>
                             </article>
-                            <article className={'post-page-header-article'}>
-                                <p><bold>Vote:</bold> { post.voteScore }</p>
+                            <article className={'post-page-vote-score post-page-header-article'}>
+                                <p>Vote: { post.voteScore }</p>
+                                <section className='post-page-vote-section-buttons'>
+                                    <button className='post-page-button post-page-vote-up'>
+                                        <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+                                    </button>
+                                    <button className='post-page-button post-page-vote-down'>
+                                        <i className="fa fa-thumbs-down" aria-hidden="true"></i>
+                                    </button>
+                                </section>
                             </article>
                         </section>
                     </section>
                     <section className={'post-page-body'}>
                         {post.body}
                     </section>
+                    <ListItems
+                        type='comments'
+                        items={comments}
+                    />
                 </section>
             )
         }

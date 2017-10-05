@@ -4,7 +4,7 @@
 
 .post-page-header {
     width: 100%;
-    background-color: #6eb176;
+    background-color: #ff6908;
     box-sizing: border-box;
     padding: 1em;
 }
@@ -30,4 +30,57 @@
     border: 1px dashed;
     min-height: 150px;
     padding: 1.5em;
+}
+
+.post-page-button {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.post-page-vote-up {
+    background-color: #259600;
+}
+
+.post-page-vote-down {
+    background-color: #ff0911;
+}
+
+.post-page-vote-score {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.post-page-vote-section-buttons {
+    margin: 0.5em;
+}
+
+@media screen and (max-width: 900px) {
+    .post-page-header-subtitle {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .post-page-container {
+        margin: 1em 2em;
+    }
+
+    .post-page-button {
+        width: 10em;
+        height: 3.5em;
+    }
+
+    .post-page-vote-score {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .post-page-vote-section-buttons {
+        display: flex;
+    }
+
+    .post-page-header-title {
+        font-size: 1em;
+    }
 }
