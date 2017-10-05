@@ -1,7 +1,7 @@
 import { fillCategories } from '../actions/categories'
-import { fillPost, fillPostCategory } from '../actions/post'
+import {fillPost, fillPostCategory, lessPostScore, morePostScore} from '../actions/post'
 import { updateTime } from "../actions/updateTime";
-import { fillComments} from "../actions/comment";
+import { fillComments } from "../actions/comment";
 import * as API from '../utils/api'
 
 const timeToUpdate = process.env.REACT_APP_UPDATE_TIME_INTERVAL
@@ -32,6 +32,20 @@ export const fillPostCategoryThunk = category => dispatch => {
     return API.getPostsCategory(category)
         .then(posts => {
             dispatch(fillPostCategory(category, posts))
+        })
+}
+
+export const voteUpPostThunk = post => dispatch => {
+    return API.voteUpPost(post)
+        .then(data => {
+            dispatch(morePostScore(post))
+        })
+}
+
+export const voteDownPostThunk = post => dispatch => {
+    return API.voteDownPost(post)
+        .then(data => {
+            dispatch(lessPostScore(post))
         })
 }
 

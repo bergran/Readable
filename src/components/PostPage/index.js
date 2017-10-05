@@ -1,7 +1,7 @@
 import './styles.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fillPostsThunk, fillCommentsPost } from '../../thunks/thunks'
+import { fillPostsThunk, fillCommentsPost, voteUpPostThunk, voteDownPostThunk } from '../../thunks/thunks'
 import { Link } from 'react-router-dom'
 import ListItems from '../ListItems'
 import '../../assest/font-awesome/css/font-awesome.min.css'
@@ -16,6 +16,16 @@ class PostPage extends Component {
             fillPost(postId)
         ])
 
+    }
+
+    handlerVoteUp = () => {
+        const { post, voteUp } = this.props
+        voteUp(post.id)
+    }
+
+    handlerVoteDown = () => {
+        const { post, voteDown } = this.props
+        voteDown(post.id)
     }
 
     render () {
@@ -50,10 +60,16 @@ class PostPage extends Component {
                             <article className={'post-page-vote-score post-page-header-article'}>
                                 <p>Vote: { post.voteScore }</p>
                                 <section className='post-page-vote-section-buttons'>
-                                    <button className='post-page-button post-page-vote-up'>
+                                    <button
+                                        className='post-page-button post-page-vote-up'
+                                        onClick={this.handlerVoteUp}
+                                    >
                                         <i className="fa fa-thumbs-up" aria-hidden="true"></i>
                                     </button>
-                                    <button className='post-page-button post-page-vote-down'>
+                                    <button
+                                        onClick={this.handlerVoteDown}
+                                        className='post-page-button post-page-vote-down'
+                                    >
                                         <i className="fa fa-thumbs-down" aria-hidden="true"></i>
                                     </button>
                                 </section>
@@ -85,7 +101,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     fillPost: post => dispatch(fillPostsThunk(post)),
-    fillComments: post => dispatch(fillCommentsPost(post))
+    fillComments: post => dispatch(fillCommentsPost(post)),
+    voteUp: post => dispatch(voteUpPostThunk(post)),
+    voteDown: post => dispatch(voteDownPostThunk(post))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostPage)
