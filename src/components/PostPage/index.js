@@ -1,6 +1,8 @@
+import './styles.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fillPostsThunk, fillCommentsPost } from '../../thunks/thunks'
+import { Link } from 'react-router-dom'
 
 class PostPage extends Component {
 
@@ -15,12 +17,42 @@ class PostPage extends Component {
     }
 
     render () {
-        const { post, comment } = this.props
-        return (
-            <section className={'post-page-container'}>
-                Hello world
-            </section>
-        )
+        const { post } = this.props
+        if (post.deleted) {
+            return (
+                <section>
+                    Sorry, this post is deleted :'(
+                </section>
+            )
+        } else {
+            const { comment } = this.props
+            return (
+                <section className={'post-page-container'}>
+                    <section className={'post-page-header'}>
+                        <h1 className={'post-page-header-title'}>
+                            { `${post.title} ` }
+                            <span className={'post-page-header-span-subtitle'}>
+                                { post.author }
+                            </span>
+                        </h1>
+                        <section className={'post-page-header-subtitle'}>
+                            <article className={'post-page-header-article'}>
+                                <p><bold>Date:</bold> {post.timestamp}</p>
+                            </article>
+                            <article className={'post-page-header-article'}>
+                                <p><bold>Category:</bold> <Link to={`/categories/${post.category}`}>{post.category}</Link></p>
+                            </article>
+                            <article className={'post-page-header-article'}>
+                                <p><bold>Vote:</bold> { post.voteScore }</p>
+                            </article>
+                        </section>
+                    </section>
+                    <section className={'post-page-body'}>
+                        {post.body}
+                    </section>
+                </section>
+            )
+        }
     }
 }
 

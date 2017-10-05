@@ -1,0 +1,33 @@
+.post-page-container {
+    margin: 2em 3.5em;
+}
+
+.post-page-header {
+    width: 100%;
+    background-color: #6eb176;
+    box-sizing: border-box;
+    padding: 1em;
+}
+
+.post-page-header-title {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.post-page-header-span-subtitle {
+    color: gray;
+    font-size: 0.7em;
+}
+
+.post-page-header-subtitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.post-page-body {
+    margin-top: 2em;
+    border: 1px dashed;
+    min-height: 150px;
+    padding: 1.5em;
+}
