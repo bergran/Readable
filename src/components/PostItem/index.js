@@ -1,4 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import {
+    voteUpCommentThunk,
+    voteDownCommentThunk
+} from '../../thunks/thunks'
 
 class PostItem extends Component {
 
@@ -10,8 +15,8 @@ class PostItem extends Component {
     render () {
         const { title, author, voteScore } = this.props
         return (
-            <section className='post-item' onClick={this.handleClick}>
-                <h1>{ title }</h1>
+            <section className='post-item' >
+                <h1 onClick={this.handleClick}>{ title }</h1>
                 <section>
                     <p>author: { author }</p>
                     <p>votes: { voteScore }</p>
@@ -21,4 +26,10 @@ class PostItem extends Component {
     }
 }
 
-export default PostItem
+const mapStateToProps =() => {}
+const mapDispatchToProps = dispatch => ({
+    voteUp: comment => dispatch(voteUpCommentThunk(comment)),
+    voteDown: comment => dispatch(voteDownCommentThunk(comment))
+})
+
+export default connect(mapStateToProps)(PostItem)

@@ -2,8 +2,23 @@ import React, { Component } from 'react'
 import VoteScore from '../VoteScore'
 import './styles.css'
 import { getUTCFormat } from "../../utils/tools";
+import { connect } from 'react-redux'
+import {
+    voteUpCommentThunk,
+    voteDownCommentThunk
+} from '../../thunks/thunks'
 
 class CommentItem extends Component {
+
+    handleUpVote = () => {
+        const { id, voteUp } = this.props
+        voteUp(id)
+    }
+
+    handleDownVote = () => {
+        const { id, voteDown } = this.props
+        voteDown(id)
+    }
 
     render () {
         const { author, voteScore, body, timestamp } = this.props;
@@ -19,8 +34,8 @@ class CommentItem extends Component {
                         </article>
                         <VoteScore
                             score={voteScore}
-                            onUpScore={() => {}}
-                            onDownScore={() => {}}
+                            onUpScore={this.handleUpVote}
+                            onDownScore={this.handleDownVote}
                         />
 
                     </section>
@@ -35,4 +50,10 @@ class CommentItem extends Component {
     }
 }
 
-export default CommentItem
+const mapStateToProps = () => {}
+const mapDispatchToProps = dispatch => ({
+    voteUp: comment => dispatch(voteUpCommentThunk(comment)),
+    voteDown: comment => dispatch(voteDownCommentThunk(comment))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentItem)
