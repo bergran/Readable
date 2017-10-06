@@ -5,6 +5,7 @@ import { fillPostsThunk, fillCommentsPost, voteUpPostThunk, voteDownPostThunk } 
 import { Link } from 'react-router-dom'
 import ListItems from '../ListItems'
 import VoteScore from '../VoteScore'
+import { getUTCFormat } from "../../utils/tools";
 
 class PostPage extends Component {
 
@@ -38,9 +39,6 @@ class PostPage extends Component {
             )
         } else {
             const { comments } = this.props
-            const date = new Date(post.timestamp)
-            const day = date.getDay().toString().padStart(2, '0')
-            const month = date.getMonth().toString().padStart(2, '0')
             return (
                 <section className={'post-page-container'}>
                     <section className={'post-page-header'}>
@@ -52,7 +50,7 @@ class PostPage extends Component {
                         </h1>
                         <section className={'post-page-header-subtitle'}>
                             <article className={'post-page-header-article'}>
-                                <p><bold>Date:</bold> {`${month}/${day}/${date.getFullYear()}`}</p>
+                                <p><bold>Date:</bold> {getUTCFormat(post.timestamp)}</p>
                             </article>
                             <article className={'post-page-header-article'}>
                                 <p><bold>Category:</bold> <Link to={`/categories/${post.category}`}>{post.category}</Link></p>
