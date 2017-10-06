@@ -1,0 +1,42 @@
+.voteScore {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.voteScore-section-buttons {
+    margin: 0.5em;
+}
+
+.voteScore-up {
+    background-color: #259600;
+}
+
+.voteScore-down {
+    background-color: #ff0911;
+}
+
+.voteScore-button {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+
+@media screen and (max-width: 900px) {
+
+    .voteScore {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .voteScore-button {
+        width: 10em;
+        height: 3.5em;
+    }
+
+    .voteScore-section-buttons {
+        display: flex;
+    }
+
+}

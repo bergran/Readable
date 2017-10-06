@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fillPostsThunk, fillCommentsPost, voteUpPostThunk, voteDownPostThunk } from '../../thunks/thunks'
 import { Link } from 'react-router-dom'
 import ListItems from '../ListItems'
-import '../../assest/font-awesome/css/font-awesome.min.css'
+import VoteScore from '../VoteScore'
 
 class PostPage extends Component {
 
@@ -57,23 +57,11 @@ class PostPage extends Component {
                             <article className={'post-page-header-article'}>
                                 <p><bold>Category:</bold> <Link to={`/categories/${post.category}`}>{post.category}</Link></p>
                             </article>
-                            <article className={'post-page-vote-score post-page-header-article'}>
-                                <p>Vote: { post.voteScore }</p>
-                                <section className='post-page-vote-section-buttons'>
-                                    <button
-                                        className='post-page-button post-page-vote-up'
-                                        onClick={this.handlerVoteUp}
-                                    >
-                                        <i className="fa fa-thumbs-up" aria-hidden="true"></i>
-                                    </button>
-                                    <button
-                                        onClick={this.handlerVoteDown}
-                                        className='post-page-button post-page-vote-down'
-                                    >
-                                        <i className="fa fa-thumbs-down" aria-hidden="true"></i>
-                                    </button>
-                                </section>
-                            </article>
+                            <VoteScore
+                                score={post.voteScore}
+                                onUpScore={this.handlerVoteUp}
+                                onDownScore={this.handlerVoteDown}
+                            />
                         </section>
                     </section>
                     <section className={'post-page-body'}>
