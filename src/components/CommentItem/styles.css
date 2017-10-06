@@ -13,3 +13,33 @@
     background: -moz-linear-gradient(bottom right, #29bc00 50%, #ff6908); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to bottom right, #29bc00 50%, #ff6908); /* Standard syntax */
 }
+
+.comment-item-header-subtitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.comment-item-body-title {
+    font-size: 1em;
+    margin: 0;
+    border-bottom: 1px solid black;
+}
+
+.comment-item-body {
+    background-color: #fff;
+    padding: 0.5em 1em;
+}
+
+
+@media screen and (max-width: 800px) {
+    .comment-item{
+        width: 300px;
+    }
+
+    .comment-item-header-subtitle {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

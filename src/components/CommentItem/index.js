@@ -32,19 +32,19 @@ class CommentItem extends Component {
                         <article className='comment-item-header-subtitle-article'>
                             <p>date: { getUTCFormat(timestamp) }</p>
                         </article>
-                        <VoteScore
-                            score={voteScore}
-                            onUpScore={this.handleUpVote}
-                            onDownScore={this.handleDownVote}
-                        />
-
                     </section>
                 </section>
                 <section className='comment-item-body'>
+                    <h1 className='comment-item-body-title'>Comment</h1>
                     <p>
                         { body }
                     </p>
                 </section>
+                <VoteScore
+                    score={voteScore}
+                    onUpScore={this.handleUpVote}
+                    onDownScore={this.handleDownVote}
+                />
             </section>
         )
     }

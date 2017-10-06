@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { SwitchItem } from '../SwitchItem'
+import './styles.css'
 
 class ListItems extends Component {
 
@@ -19,7 +20,7 @@ class ListItems extends Component {
                 <div className='list'>
                     {
                         items.length > 0 ?
-                            <ul>
+                            <ul className='list-item-ul'>
                                 {
                                     items.map(item =>
                                         <li key={item.id}>
