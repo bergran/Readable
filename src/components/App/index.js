@@ -6,6 +6,8 @@ import CategoryPage from "../CategoryPage";
 import PostPage from "../PostPage";
 import Nav from '../Nav'
 import NavBarContainer from "../NavBarContainer/index";
+import CreatePost from "../CreatePost/index";
+import CreateComment from "../CreateComment/index";
 
 
 class App extends Component {
@@ -35,8 +37,18 @@ class App extends Component {
           />
           <Route
               exact
+              path='/post/add'
+              component={CreatePost}
+          />
+          <Route
+              exact
               path='/posts/:post'
               component={PostPage}
+          />
+          <Route
+              exact
+              path='/comments/add'
+              component={CreateComment}
           />
       </section>
     )
