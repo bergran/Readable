@@ -17,7 +17,6 @@ export default class NewItem extends Component {
     handleSubmit = e => {
         e.preventDefault()
         this.props.onSubmit()
-        return false
     }
 
     render () {

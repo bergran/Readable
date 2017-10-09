@@ -13,9 +13,7 @@ class CreatePost extends Component {
     }
 
     handleSubmit = () => {
-        console.log('qwerqre')
-        debugger
-        const { textArea } = this.props
+        const { textArea } = this.state
         if (textArea.isValid) {
             // send new post
             console.log('im valid')
@@ -23,7 +21,6 @@ class CreatePost extends Component {
     }
 
     handleChange = inputRaw => {
-        console.log('entro', inputRaw)
         this.setState({
             textArea: inputRaw
         })
