@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
-    voteUpCommentThunk,
-    voteDownCommentThunk
+    voteUpPostThunk,
+    voteDownPostThunk
 } from '../../thunks/thunks'
 
 class PostItem extends Component {
@@ -28,8 +28,8 @@ class PostItem extends Component {
 
 const mapStateToProps =() => ({})
 const mapDispatchToProps = dispatch => ({
-    voteUp: comment => dispatch(voteUpCommentThunk(comment)),
-    voteDown: comment => dispatch(voteDownCommentThunk(comment))
+    voteUp: post => dispatch(voteUpPostThunk(post)),
+    voteDown: post => dispatch(voteDownPostThunk(post))
 })
 
-export default connect(mapStateToProps)(PostItem)
+export default connect(mapStateToProps, mapDispatchToProps)(PostItem)
