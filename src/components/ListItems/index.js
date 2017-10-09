@@ -13,11 +13,11 @@ class ListItems extends Component {
     render () {
         const { title, items, type } = this.props
         return (
-            <div className='list-item'>
+            <section className='list-item'>
                 <h1 className='title'>
                     { title }
                 </h1>
-                <div className='list'>
+                <section className='list'>
                     {
                         items.length > 0 ?
                             <ul className='list-item-ul'>
@@ -40,8 +40,8 @@ class ListItems extends Component {
                             </section>
                     }
 
-                </div>
-            </div>
+                </section>
+            </section>
         )
     }
 }

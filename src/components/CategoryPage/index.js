@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import ListItems from "../ListItems/index";
 import { Capitalize } from '../../utils/tools'
 import { updaterThunk ,fillPostCategoryThunk } from "../../thunks/thunks";
+import { Link } from 'react-router-dom'
+import './styles.css'
+import '../../assest/font-awesome/css/font-awesome.min.css'
 
 class CategoryPage extends Component {
 
@@ -27,8 +30,15 @@ class CategoryPage extends Component {
         const { isLoading } = this.state
         return (
             <section>
-                <h1>{ Capitalize(match.params.category) }</h1>
-                <section>
+                <section className='category-page-header'>
+                    <h1 className='category-page-header-title'>{ Capitalize(match.params.category) }</h1>
+                    <section className='category-page-create-post-section'>
+                        <Link to='/posts/add' className='category-page-button category-page-button-text'>
+                            <i className='fa fa-plus-circle' aria-hidden="true"></i>
+                        </Link>
+                    </section>
+                </section>
+                <section className='category-page-posts'>
                     {
                         !isLoading ?
                             <ListItems
