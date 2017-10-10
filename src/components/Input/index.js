@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import './styles.css'
 
 class Input extends Component {
 
@@ -9,7 +10,18 @@ class Input extends Component {
     label: 'defaultLabel',
     type: 'text',
     placeholder: '',
+    initialValue: '',
     onChange: () => ({})
+  }
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      input: {
+        isValid: false,
+        value: props.initialValue
+      }
+    }
   }
 
   handleChange = (event) => {
@@ -23,22 +35,30 @@ class Input extends Component {
         isValid: true
       }
     })
+    this.setState({
+        input: {
+          isValid: true,
+          value: event.target.value
+        }
+    })
   }
 
   render () {
-    const { label, type, name, value, placeholder } = this.props
+    const { label, type, name, placeholder } = this.props
+    const { input } = this.state
     return (
-      <section>
-        <label>
+      <section className='input-container-out'>
+        <label className='input-container-label'>
           { label }
         </label>
-        <section>
+        <section className='input-container-int'>
           <input
             type={type}
-            value={value}
+            value={input.value}
             name={name}
             onChange={this.handleChange}
             placeholder={placeholder}
+            className='input'
           />
         </section>
       </section>)

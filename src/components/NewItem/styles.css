@@ -3,9 +3,27 @@
     width: 50%;
 }
 
+.newitem-form-container-section {
+    margin: auto;
+    width: 50%;
+}
 
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 1000px) {
+    .newitem-form-container-section {
+        margin: 0;
+        width: 100%;
+    }
+
     .newitem-form-container {
-        margin: 3em;
+        margin: 0;
+        width: 100%;
     }
 }
+
+
+/*@media screen and (min-width: 501px) and (max-width: 700px) {*/
+    /*.newitem-form-container {*/
+        /*margin: 5em;*/
+    /*}*/
+/*}*/

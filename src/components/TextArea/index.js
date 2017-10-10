@@ -51,8 +51,8 @@ class TextArea extends Component {
                           placeholder={placeholder}
                           onChange={this.handleChange}
                           className='textarea-container-input'
+                          value={ value }
                     >
-                        { value }
                     </textarea>
                 </section>
             </section>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TextArea from '../TextArea'
 import './styles.css'
+import Input from "../Input/index";
 
 export default class NewItem extends Component {
 
@@ -29,26 +30,32 @@ export default class NewItem extends Component {
                 className={`newitem-form-container ${classRaw}`}
                 onSubmit={this.handleSubmit}
             >
-                <TextArea
-                    onChange={onChange}
-                    name={item}
-                    label={label}
-                    placeholder={`Write here your ${item.toLowerCase()}`}
-                />
-                {
-                    !isValid ?
-                        <section
-                            className='create-post-page-form-fake-button create-post-page-form-button-disabled'
-                            disabled={!isValid}
-                        >
-                            Add Post
-                        </section> :
-                        <button
-                            className='create-post-page-form-button'
-                        >
-                            Add Post
-                        </button>
-                }
+                <section className="newitem-form-container-section">
+                    <Input
+                        label='Author'
+                        placeholder='Author post'
+                    />
+                    <TextArea
+                        onChange={onChange}
+                        name={item}
+                        label={label}
+                        placeholder={`Write here your ${item.toLowerCase()}`}
+                    />
+                    {
+                        !isValid ?
+                            <section
+                                className='create-post-page-form-fake-button create-post-page-form-button-disabled'
+                                disabled={!isValid}
+                            >
+                                Add Post
+                            </section> :
+                            <button
+                                className='create-post-page-form-button'
+                            >
+                                Add Post
+                            </button>
+                    }
+                </section>
             </form>
         )
     }

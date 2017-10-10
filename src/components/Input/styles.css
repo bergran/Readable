@@ -1,0 +1,31 @@
+.input-container-out {
+    margin-bottom: 1.5em;
+    font-size: 1.2em;
+}
+
+.input-container-in {
+
+}
+
+.input {
+    width: 500px;
+    box-sizing: border-box;
+}
+
+.input-container-label {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .input {
+        width: 100%;
+        font-size: 0.83em;
+        border: 1px solid blue;
+    }
+
+    .input-container-out {
+        margin-bottom: 1em;
+        font-size: 1.6em;
+    }
+}
