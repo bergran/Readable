@@ -1,3 +1,11 @@
 .newitem-form-container {
+    margin: auto;
+    width: 50%;
+}
 
+
+@media screen and (max-width: 500px) {
+    .newitem-form-container {
+        margin: 3em;
+    }
 }

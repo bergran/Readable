@@ -24,8 +24,6 @@ export default class NewItem extends Component {
     render () {
         const { classNames, label, isValid, item, onChange, title } = this.props
         const classRaw = classNames.join(' ')
-        console.log(classNames)
-        console.log(classRaw)
         return (
             <form
                 className={`newitem-form-container ${classRaw}`}
