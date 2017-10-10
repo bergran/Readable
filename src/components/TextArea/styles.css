@@ -1,0 +1,18 @@
+.textarea-label {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.textarea-container-input {
+    height: 9em;
+    width: 500px;
+    resize: none;
+    box-sizing: border-box;
+}
+
+
+@media screen and (max-width: 800px) {
+    .textarea-container-input {
+        width: 20em;
+    }
+}

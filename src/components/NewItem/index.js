@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import TextArea from '../TextArea'
+import './styles.css'
 
 export default class NewItem extends Component {
 
@@ -11,7 +12,8 @@ export default class NewItem extends Component {
     }
 
     static defaultProps = {
-        classNames: []
+        classNames: [],
+        title: ''
     }
 
     handleSubmit = e => {
@@ -20,11 +22,13 @@ export default class NewItem extends Component {
     }
 
     render () {
-        const { classNames, label, isValid, item, onChange } = this.props
+        const { classNames, label, isValid, item, onChange, title } = this.props
         const classRaw = classNames.join(' ')
+        console.log(classNames)
+        console.log(classRaw)
         return (
             <form
-                className={`${classRaw}`}
+                className={`newitem-form-container ${classRaw}`}
                 onSubmit={this.handleSubmit}
             >
                 <TextArea
