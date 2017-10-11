@@ -40,7 +40,6 @@ class CreatePost extends Component {
                     isValid={textArea.isValid}
                     onChange={this.handleChange}
                     onSubmit={this.handleSubmit}
-                    // className={['create-post-page-form']}
                 />
             </section>
         )
