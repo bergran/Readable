@@ -7,7 +7,10 @@ class CreatePost extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            textArea: {
+            author: {
+                isValid: false
+            },
+            post: {
                 isValid: false
             }
         }
@@ -23,12 +26,20 @@ class CreatePost extends Component {
 
     handleChange = inputRaw => {
         this.setState({
-            textArea: inputRaw
+            [inputRaw.name]: {
+                isValid: inputRaw.isValid,
+                value: inputRaw.value
+            }
         })
     }
 
+    areValid = () => {
+        const keys = Object.keys(this.state)
+        const validKeys = keys.filter(key => this.state[key].isValid)
+        return (keys.length !== 0 && keys.length === validKeys.length)
+    }
+
     render () {
-        const { textArea } = this.state
         return (
             <section className='create-post-page-container'>
                 <h1 className='newitem-form-container-title'>
@@ -37,7 +48,7 @@ class CreatePost extends Component {
                 <NewItem
                     label='Post'
                     item='post'
-                    isValid={textArea.isValid}
+                    isValid={this.areValid()}
                     onChange={this.handleChange}
                     onSubmit={this.handleSubmit}
                 />

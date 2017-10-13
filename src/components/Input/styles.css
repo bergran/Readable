@@ -29,9 +29,6 @@
     .input-container-out {
         margin-bottom: 1em;
         font-size: 1.6em;
+        width: 100%;
     }
-}
-
-@media screen and (min-width: 950px) {
-
 }

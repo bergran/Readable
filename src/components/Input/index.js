@@ -27,13 +27,10 @@ class Input extends Component {
   handleChange = (event) => {
     // TODO (ABG) execute validators
     const { name, onChange } = this.props
-    const value = event.target.value
     onChange({
-      [name]: {
-        value,
-        // Hack (ABG) this is hardcoded because a future TODO refactor
-        isValid: true
-      }
+        name,
+        value: event.target.value,
+        isValid: true,
     })
     this.setState({
         input: {

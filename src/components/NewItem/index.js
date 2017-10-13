@@ -1,19 +1,13 @@
 import React, { Component } from 'react'
 import TextArea from '../TextArea'
 import './styles.css'
+import classNames from 'classnames';
 import Input from "../Input/index";
 
 export default class NewItem extends Component {
 
-    constructor (props) {
-        super(props)
-        this.state = {
-            value: {}
-        }
-    }
-
     static defaultProps = {
-        classNames: [],
+        classes: [],
         title: ''
     }
 
@@ -23,8 +17,8 @@ export default class NewItem extends Component {
     }
 
     render () {
-        const { classNames, label, isValid, item, onChange, title } = this.props
-        const classRaw = classNames.join(' ')
+        const { classes, label, isValid, item, onChange, title } = this.props
+        const classRaw = classes.join(' ')
         return (
             <form
                 className={`newitem-form-container ${classRaw}`}
@@ -32,7 +26,9 @@ export default class NewItem extends Component {
             >
                 <Input
                     label='Author'
+                    name='author'
                     placeholder='Author post'
+                    onChange={onChange}
                 />
                 <TextArea
                     onChange={onChange}
@@ -40,20 +36,15 @@ export default class NewItem extends Component {
                     label={label}
                     placeholder={`Write here your ${item.toLowerCase()}`}
                 />
-                {
-                    !isValid ?
-                        <section
-                            className='create-post-page-form-fake-button create-post-page-form-button-disabled'
-                            disabled={!isValid}
-                        >
-                            Add Post
-                        </section> :
-                        <button
-                            className='create-post-page-form-button'
-                        >
-                            Add Post
-                        </button>
-                }
+                <button
+                    className={classNames({
+                        'create-post-page-form-button': true,
+                        'create-post-page-form-button-disabled': !isValid
+                    })}
+                    disabled={!isValid}
+                >
+                    Add post
+                </button>
             </form>
         )
     }

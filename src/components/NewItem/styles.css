@@ -5,11 +5,20 @@
     justify-content: center;
 }
 
-.create-post-page-form-button,
-.create-post-page-form-fake-button
-{
-    width: 5em;
+.create-post-page-form-button {
+    width: 7em;
     height: 3em;
     background-color: #29bc00;
-    text-align: center;
+    box-sizing: border-box;
+}
+
+.create-post-page-form-button-disabled {
+    cursor: not-allowed;
+}
+
+@media screen and (max-width: 900px) {
+    .create-post-page-form-button {
+        font-size: 1em;
+        width: 100%;
+    }
 }
