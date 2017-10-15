@@ -17,14 +17,15 @@ class CreatePost extends Component {
     }
 
     handleSubmit = () => {
-        const { textArea } = this.state
-        if (textArea.isValid) {
+        const formValid = this.areValid()
+        if (formValid) {
             // send new post
             console.log('im valid')
         } // else do nothing
     }
 
     handleChange = inputRaw => {
+        console.log(inputRaw)
         this.setState({
             [inputRaw.name]: {
                 isValid: inputRaw.isValid,
@@ -51,6 +52,7 @@ class CreatePost extends Component {
                     isValid={this.areValid()}
                     onChange={this.handleChange}
                     onSubmit={this.handleSubmit}
+                    isRequired
                 />
             </section>
         )

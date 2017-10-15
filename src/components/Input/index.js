@@ -11,38 +11,48 @@ class Input extends Component {
     type: 'text',
     placeholder: '',
     initialValue: '',
-    onChange: () => ({})
+    onChange: () => ({}),
+    validations: []
   }
 
   constructor (props) {
     super(props)
     this.state = {
-      input: {
-        isValid: false,
-        value: props.initialValue
-      }
+      value: props.initialValue
     }
   }
 
   handleChange = (event) => {
-    // TODO (ABG) execute validators
-    const { name, onChange } = this.props
+    const { name, onChange, isRequired, validations } = this.props;
+    let isValid;
+
+
+    // If input has validations then will executed else just will put is valid
+    if (validations.length > 0) {
+        isValid = this.handleValidation(event.target.value) ||
+            (!this.handleValidation(event.target.value) && !isRequired)
+    } else {
+        isValid = true
+    }
+
     onChange({
         name,
         value: event.target.value,
-        isValid: true,
+        isValid: isValid,
     })
     this.setState({
-        input: {
-          isValid: true,
-          value: event.target.value
-        }
+      value: event.target.value
     })
+  }
+
+  handleValidation = value => {
+      const { validations } = this.props
+      return validations.filter(validation => validation(value)).length === validations.length
   }
 
   render () {
     const { label, type, name, placeholder } = this.props
-    const { input } = this.state
+    const { value } = this.state
     return (
       <section className='input-container-out'>
         <label className='input-container-label'>
@@ -51,7 +61,7 @@ class Input extends Component {
         <section className='input-container-int'>
           <input
             type={type}
-            value={input.value}
+            value={value}
             name={name}
             onChange={this.handleChange}
             placeholder={placeholder}

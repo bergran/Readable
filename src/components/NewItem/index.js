@@ -16,6 +16,8 @@ export default class NewItem extends Component {
         this.props.onSubmit()
     }
 
+    handleChange
+
     render () {
         const { classes, label, isValid, item, onChange, title } = this.props
         const classRaw = classes.join(' ')
@@ -29,6 +31,7 @@ export default class NewItem extends Component {
                     name='author'
                     placeholder='Author post'
                     onChange={onChange}
+                    validations={[(value => value.length > 0)]}
                 />
                 <TextArea
                     onChange={onChange}
