@@ -35,6 +35,7 @@
 @media screen and (max-width: 800px) {
     .comment-item{
         width: 300px;
+        margin-bottom: 1em;
     }
 
     .comment-item-header-subtitle {
