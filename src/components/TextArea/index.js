@@ -16,7 +16,13 @@ import './styles.css'
 class TextArea extends Component {
 
     static defaultProps = {
-        initialValue: ''
+        initialValue: '',
+        validations: [],
+        isRequired: false,
+        placeholder: '',
+        name: 'defaultName',
+        label: 'defaultLabel',
+        onChange: () => ({})
     }
 
     constructor (props) {
@@ -27,18 +33,35 @@ class TextArea extends Component {
     }
 
     handleChange = e => {
-        const { name, onChange } = this.props
+        const { name, onChange, validations, isRequired } = this.props
         e.preventDefault()
-        this.setState({
-            value: e.target.value
-        })
+        let isValid;
+        const value = e.target.value
+
+        if (validations.length > 0) {
+            const resultValidations = this.handleValidations(value)
+            isValid = resultValidations ||
+                (isRequired && resultValidations) ||
+                !isRequired
+        } else {
+            isValid = true
+        }
+
         onChange({
-            // Value hardcoded, this component will have a refactor
-            isValid: true,
+            isValid: isValid,
             value: e.target.value,
             name
         })
+        this.setState({
+            value: value
+        })
     }
+
+    handleValidations = value => {
+        const { validations } = this.props
+        return validations.filter(validation => validation(value)).length === validations.length
+    }
+
 
     render () {
         const { label, placeholder } = this.props

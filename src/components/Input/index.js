@@ -6,6 +6,7 @@ class Input extends Component {
 
   static defaultProps = {
     value: '',
+    isRequired: false,
     name: 'defaultName',
     label: 'defaultLabel',
     type: 'text',
@@ -29,8 +30,10 @@ class Input extends Component {
 
     // If input has validations then will executed else just will put is valid
     if (validations.length > 0) {
-        isValid = this.handleValidation(event.target.value) ||
-            (!this.handleValidation(event.target.value) && !isRequired)
+        const resultValidation = this.handleValidation(event.target.value)
+        isValid = resultValidation ||
+            (isRequired && resultValidation) ||
+            !isRequired
     } else {
         isValid = true
     }

@@ -6,14 +6,7 @@ class CreatePost extends Component {
 
     constructor (props) {
         super(props)
-        this.state = {
-            author: {
-                isValid: false
-            },
-            post: {
-                isValid: false
-            }
-        }
+        this.state = {}
     }
 
     handleSubmit = () => {
@@ -25,13 +18,16 @@ class CreatePost extends Component {
     }
 
     handleChange = inputRaw => {
-        console.log(inputRaw)
         this.setState({
             [inputRaw.name]: {
                 isValid: inputRaw.isValid,
                 value: inputRaw.value
             }
         })
+    }
+
+    handleMount = initalInputs => {
+        this.setState({...initalInputs})
     }
 
     areValid = () => {
@@ -52,7 +48,7 @@ class CreatePost extends Component {
                     isValid={this.areValid()}
                     onChange={this.handleChange}
                     onSubmit={this.handleSubmit}
-                    isRequired
+                    onMount={this.handleMount}
                 />
             </section>
         )

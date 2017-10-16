@@ -8,7 +8,7 @@ export default class NewItem extends Component {
 
     static defaultProps = {
         classes: [],
-        title: ''
+        onMount: () => ({})
     }
 
     handleSubmit = e => {
@@ -16,10 +16,20 @@ export default class NewItem extends Component {
         this.props.onSubmit()
     }
 
-    handleChange
+    componentDidMount () {
+        const { item, onMount } = this.props
+        onMount({
+            'author': {
+                isValid: false
+            },
+            [item]: {
+                isValid: false
+            }
+        })
+    }
 
     render () {
-        const { classes, label, isValid, item, onChange, title } = this.props
+        const { classes, label, isValid, item, onChange } = this.props
         const classRaw = classes.join(' ')
         return (
             <form
@@ -31,13 +41,16 @@ export default class NewItem extends Component {
                     name='author'
                     placeholder='Author post'
                     onChange={onChange}
+                    isRequired
                     validations={[(value => value.length > 0)]}
                 />
                 <TextArea
                     onChange={onChange}
                     name={item}
                     label={label}
+                    isRequired
                     placeholder={`Write here your ${item.toLowerCase()}`}
+                    validations={[(value => value.length > 0)]}
                 />
                 <button
                     className={classNames({
