@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { createPost } from "../../thunks/thunks";
 import NewItem from '../NewItem'
 import './styles.css'
+import uuid4 from 'uuid'
 
 class CreatePost extends Component {
 
@@ -13,7 +16,19 @@ class CreatePost extends Component {
         const formValid = this.areValid()
         if (formValid) {
             // send new post
-            console.log('im valid')
+            const { addPost, match, history } = this.props
+            const { title, author, post } = this.state
+            const uuid = uuid4()
+            addPost({
+                id: uuid,
+                title: title.value,
+                timestamp: Date.now(),
+                body: post.value,
+                author: author.value,
+                category: match.params.category
+            }).then(post =>
+                history.push(`/posts/${uuid}`)
+            )
         } // else do nothing
     }
 
@@ -55,4 +70,10 @@ class CreatePost extends Component {
     }
 }
 
-export default CreatePost
+const mapStateToProps = state => state
+
+const mapDispatchToProps = dispatch => ({
+    addPost: post => dispatch(createPost(post))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost)

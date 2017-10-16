@@ -1,5 +1,5 @@
 import { fillCategories } from '../actions/categories'
-import {fillPost, fillPostCategory, lessPostScore, morePostScore} from '../actions/post'
+import {fillPost, fillPostCategory, lessPostScore, morePostScore, addPost} from '../actions/post'
 import { updateTime } from "../actions/updateTime";
 import { fillComments, moreCommentScore, lessCommentScore } from "../actions/comment";
 import * as API from '../utils/api'
@@ -61,6 +61,25 @@ export const voteDownCommentThunk = comment => dispatch => {
         .then(data => {
             dispatch(lessCommentScore(comment))
         })
+}
+
+export const createPost = ({
+    id,
+    title,
+    timestamp,
+    body,
+    author,
+    category
+}) => dispatch => {
+    return API.addPost({
+        id,
+        title,
+        body,
+        author,
+        category
+    }).then(post => {
+        dispatch(addPost(post))
+    })
 }
 
 export const updaterThunk = thunkAction => (timeRaw, next = '') =>  {

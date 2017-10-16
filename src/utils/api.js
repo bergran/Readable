@@ -47,11 +47,11 @@ export const getPost = post => {
 export const addPost = ({
     id,
     title,
-    timestamp,
     body,
-    author = authorization,
+    author,
     category
   }) => {
+  const timestamp = Date.now()
   return fetch(`http://${host}:3001/posts`, {
     headers: {
       ...headers,
