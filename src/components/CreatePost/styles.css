@@ -9,15 +9,7 @@
     padding: 2em;
 }
 
-.create-post-page-form {
-    position: relative;
-    left: 33%;
-}
-
 @media screen and (max-width: 800px) {
-    .create-post-page-form {
-        position: static;
-    }
 
     .create-post-page-container {
         padding: 0.5em;
