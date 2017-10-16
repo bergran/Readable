@@ -22,6 +22,9 @@ export default class NewItem extends Component {
             'author': {
                 isValid: false
             },
+            'title': {
+                isValid: false
+            },
             [item]: {
                 isValid: false
             }
@@ -44,6 +47,17 @@ export default class NewItem extends Component {
                     isRequired
                     validations={[(value => value.length > 0)]}
                 />
+                {
+                    item === 'post' &&
+                        <Input
+                            label='Title'
+                            name='title'
+                            placeholder='Title post'
+                            onChange={onChange}
+                            isRequired
+                            validations={[(value => value.length > 0)]}
+                        />
+                }
                 <TextArea
                     onChange={onChange}
                     name={item}
