@@ -9,11 +9,11 @@ export const comments = (state = [], action) => {
     case MORE_COMMENT_SCORE:
         const comment = state.filter(comment => comment.id === action.comment)[0]
         comment.voteScore += action.score
-        return [].concat(state, comment)
+        return [].concat(state)
     case LESS_COMMENT_SCORE:
         const comment1 = state.filter(comment => comment.id === action.comment)[0]
         comment1.voteScore -= action.score
-        return [].concat(state, comment1)
+        return [].concat(state)
     default:
       return state
   }
