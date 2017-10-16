@@ -50,10 +50,10 @@ class PostPage extends Component {
                         </h1>
                         <section className={'post-page-header-subtitle'}>
                             <article className={'post-page-header-article'}>
-                                <p><bold>Date:</bold> {getUTCFormat(post.timestamp)}</p>
+                                <p><strong>Date:</strong> {getUTCFormat(post.timestamp)}</p>
                             </article>
                             <article className={'post-page-header-article'}>
-                                <p><bold>Category:</bold> <Link to={`/categories/${post.category}`}>{post.category}</Link></p>
+                                <p><strong>Category:</strong> <Link to={`/categories/${post.category}`}>{post.category}</Link></p>
                             </article>
                             <VoteScore
                                 score={post.voteScore}

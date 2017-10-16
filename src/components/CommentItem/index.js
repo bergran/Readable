@@ -50,7 +50,7 @@ class CommentItem extends Component {
     }
 }
 
-const mapStateToProps = () => {}
+const mapStateToProps = () => ({})
 const mapDispatchToProps = dispatch => ({
     voteUp: comment => dispatch(voteUpCommentThunk(comment)),
     voteDown: comment => dispatch(voteDownCommentThunk(comment))
