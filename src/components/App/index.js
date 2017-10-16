@@ -37,7 +37,7 @@ class App extends Component {
           />
           <Route
               exact
-              path='/post/add'
+              path='/categories/:category/add'
               component={CreatePost}
           />
           <Route

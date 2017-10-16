@@ -33,7 +33,7 @@ class CategoryPage extends Component {
                 <section className='category-page-header'>
                     <h1 className='category-page-header-title'>{ Capitalize(match.params.category) }</h1>
                     <section className='category-page-create-post-section'>
-                        <Link to='/post/add' className='category-page-button category-page-button-text'>
+                        <Link to={`/categories/${match.params.category}/add`} className='category-page-button category-page-button-text'>
                             <i className='fa fa-plus-circle' aria-hidden="true"></i>
                         </Link>
                     </section>
