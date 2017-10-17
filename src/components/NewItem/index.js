@@ -18,17 +18,20 @@ export default class NewItem extends Component {
 
     componentDidMount () {
         const { item, onMount } = this.props
-        onMount({
+        let initialMount = {
             'author': {
-                isValid: false
-            },
-            'title': {
                 isValid: false
             },
             [item]: {
                 isValid: false
             }
-        })
+        }
+        if (item === 'post') {
+           initialMount['title'] = {
+               isValid: false
+           }
+        }
+        onMount(initialMount)
     }
 
     render () {

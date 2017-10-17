@@ -123,7 +123,6 @@ export const addComment = ({
   title,
   body,
   author,
-  category,
   parentId
 }) => {
   return fetch(`http://${host}:3001/comments`, {
@@ -138,7 +137,6 @@ export const addComment = ({
       title,
       body,
       author,
-      category,
       parentId
     })
   })

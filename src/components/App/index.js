@@ -47,7 +47,7 @@ class App extends Component {
           />
           <Route
               exact
-              path='/posts/:id/add'
+              path='/posts/:post/add'
               component={CreateComment}
           />
       </section>

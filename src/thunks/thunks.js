@@ -1,7 +1,7 @@
 import { fillCategories } from '../actions/categories'
 import {fillPost, fillPostCategory, lessPostScore, morePostScore, addPost} from '../actions/post'
 import { updateTime } from "../actions/updateTime";
-import { fillComments, moreCommentScore, lessCommentScore } from "../actions/comment";
+import { fillComments, moreCommentScore, lessCommentScore, addComment } from "../actions/comment";
 import * as API from '../utils/api'
 
 const timeToUpdate = process.env.REACT_APP_UPDATE_TIME_INTERVAL
@@ -79,6 +79,25 @@ export const createPost = ({
         category
     }).then(post => {
         dispatch(addPost(post))
+    })
+}
+
+export const createComment = ({
+    id,
+    timestamp,
+    body,
+    author,
+    parentId
+}) => dispatch => {
+    return API.addComment({
+        id,
+        timestamp,
+        body,
+        author,
+        parentId
+    }).then(data => {
+        console.log(data)
+        dispatch(addComment(data))
     })
 }
 
