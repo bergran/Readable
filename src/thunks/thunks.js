@@ -101,6 +101,13 @@ export const createComment = ({
     })
 }
 
+export const getPost = postId => dispatch => {
+    return API.getPost(postId)
+        .then(post => {
+            dispatch(addPost(post))
+        })
+}
+
 export const updaterThunk = thunkAction => (timeRaw, next = '') =>  {
     const wrapper = dispatch => {
         const time = timeRaw && timeRaw[`${thunkAction.name}${next}`]

@@ -2,6 +2,13 @@
     margin: 2em 3.5em;
 }
 
+.post-page-container-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
 .post-page-header {
     width: 100%;
     background-color: #ff6908;
@@ -34,6 +41,20 @@
 
 .post-page-vote-section-buttons {
     margin: 0.5em;
+}
+
+.post-page-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5em
+}
+
+.post-page-button {
+    width: 15em;
+    height: 4em;
+    color: #FFF;
+    background-color: #ff6908;
 }
 
 @media screen and (max-width: 900px) {

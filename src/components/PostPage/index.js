@@ -1,21 +1,39 @@
 import './styles.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fillPostsThunk, fillCommentsPost, voteUpPostThunk, voteDownPostThunk } from '../../thunks/thunks'
+import { getPost, fillCommentsPost, voteUpPostThunk, voteDownPostThunk } from '../../thunks/thunks'
 import { Link } from 'react-router-dom'
 import ListItems from '../ListItems'
 import VoteScore from '../VoteScore'
 import { getUTCFormat } from "../../utils/tools";
+import ReactLoading from 'react-loading'
 
 class PostPage extends Component {
 
+    constructor (props) {
+        super(props)
+        this.state = {
+            isLoading: true
+        }
+    }
+
     componentDidMount () {
         const postId = this.props.match.params.post
-        const { fillComments, fillPost } = this.props
+        const { fillComments, addPost } = this.props
         Promise.all([
-            fillComments(postId),
-            fillPost(postId)
+            addPost(postId),
+            fillComments(postId)
         ])
+        .then(data => {
+            this.setState({
+                isLoading: false
+            })
+        })
+        .catch(data => {
+            this.setState({
+                isLoading: false
+            })
+        })
 
     }
 
@@ -29,8 +47,28 @@ class PostPage extends Component {
         voteDown(post.id)
     }
 
+    handleCreateComment = () => {
+        const { history, match } = this.props
+        history.push(`/posts/${match.params.post}/add`)
+    }
+
     render () {
         const { post } = this.props
+        const { isLoading } = this.state
+
+        if (isLoading) {
+            return (
+                <section
+                    className='post-page-container-loading'
+                >
+                    <ReactLoading
+                        type='cylon'
+                        color='#444'
+                    />
+                </section>
+            )
+        }
+
         if (post.deleted) {
             return (
                 <section>
@@ -65,6 +103,16 @@ class PostPage extends Component {
                     <section className={'post-page-body'}>
                         {post.body}
                     </section>
+                    <section
+                        className='post-page-button-container'
+                    >
+                        <button
+                            className='post-page-button'
+                            onClick={this.handleCreateComment}
+                        >
+                            Add new Comment
+                        </button>
+                    </section>
                     <ListItems
                         type='comments'
                         items={comments}
@@ -86,7 +134,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fillPost: post => dispatch(fillPostsThunk(post)),
+    addPost: post => dispatch(getPost(post)),
     fillComments: post => dispatch(fillCommentsPost(post)),
     voteUp: post => dispatch(voteUpPostThunk(post)),
     voteDown: post => dispatch(voteDownPostThunk(post))
