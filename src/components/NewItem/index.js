@@ -8,7 +8,11 @@ export default class NewItem extends Component {
 
     static defaultProps = {
         classes: [],
-        onMount: () => ({})
+        onMount: () => ({}),
+        initialAuthor: '',
+        initialItem: '',
+        initialTitle: '',
+        edit: false
     }
 
     handleSubmit = e => {
@@ -35,7 +39,17 @@ export default class NewItem extends Component {
     }
 
     render () {
-        const { classes, label, isValid, item, onChange } = this.props
+        const {
+            classes,
+            label,
+            isValid,
+            item,
+            onChange,
+            initialAuthor,
+            initialItem,
+            initialTitle,
+            edit
+        } = this.props
         const classRaw = classes.join(' ')
         return (
             <form
@@ -49,6 +63,7 @@ export default class NewItem extends Component {
                     onChange={onChange}
                     isRequired
                     validations={[(value => value.length > 0)]}
+                    initialValue={initialAuthor}
                 />
                 {
                     item === 'post' &&
@@ -58,6 +73,7 @@ export default class NewItem extends Component {
                             placeholder='Title post'
                             onChange={onChange}
                             isRequired
+                            initialValue={initialTitle}
                             validations={[(value => value.length > 0)]}
                         />
                 }
@@ -66,6 +82,7 @@ export default class NewItem extends Component {
                     name={item}
                     label={label}
                     isRequired
+                    initialValue={initialItem}
                     placeholder={`Write here your ${item.toLowerCase()}`}
                     validations={[(value => value.length > 0)]}
                 />
@@ -76,7 +93,7 @@ export default class NewItem extends Component {
                     })}
                     disabled={!isValid}
                 >
-                    Add post
+                    {`${edit ? 'Edit' : 'Add'} ${item}`}
                 </button>
             </form>
         )

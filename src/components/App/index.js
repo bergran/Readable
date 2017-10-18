@@ -5,9 +5,10 @@ import Home from '../Home'
 import CategoryPage from "../CategoryPage";
 import PostPage from "../PostPage";
 import Nav from '../Nav'
-import NavBarContainer from "../NavBarContainer/index";
-import CreatePost from "../CreatePost/index";
-import CreateComment from "../CreateComment/index";
+import NavBarContainer from "../NavBarContainer";
+import CreatePost from "../CreatePost";
+import CreateComment from "../CreateComment";
+import EditPost from '../EditPost'
 
 
 class App extends Component {
@@ -49,6 +50,11 @@ class App extends Component {
               exact
               path='/posts/:post/add'
               component={CreateComment}
+          />
+          <Route
+              exact
+              path='/posts/:post/edit'
+              component={EditPost}
           />
       </section>
     )
