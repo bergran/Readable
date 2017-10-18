@@ -5,6 +5,7 @@
     -webkit-border-radius: 0.5em;
     -moz-border-radius: 0.5em;
     border-radius: 0.5em;
+    margin-bottom: 1.5em;
 }
 
 .comment-item-background-gradient {
@@ -35,7 +36,6 @@
 @media screen and (max-width: 800px) {
     .comment-item{
         width: 300px;
-        margin-bottom: 1em;
     }
 
     .comment-item-header-subtitle {

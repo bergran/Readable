@@ -9,6 +9,7 @@ import NavBarContainer from "../NavBarContainer";
 import CreatePost from "../CreatePost";
 import CreateComment from "../CreateComment";
 import EditPost from '../EditPost'
+import EditComment from '../EditComment'
 
 
 class App extends Component {
@@ -55,6 +56,11 @@ class App extends Component {
               exact
               path='/posts/:post/edit'
               component={EditPost}
+          />
+          <Route
+              exact
+              path='/comments/:comment/edit'
+              component={EditComment}
           />
       </section>
     )

@@ -75,6 +75,7 @@ class PostPage extends Component {
             )
         } else {
             const { comments } = this.props
+
             return (
                 <section className={'post-page-container'}>
                     <section className={'post-page-header'}>
@@ -134,7 +135,13 @@ class PostPage extends Component {
 const mapStateToProps = (state, ownProps) => {
     const postId = ownProps.match.params.post
     const post = state.posts.filter(post => post.id === postId)
-    const comments = state.comments.filter(comment => comment.parentId === postId)
+    const comments = state.comments
+        .filter(comment => comment.parentId === postId)
+        .map(comment => {
+            comment['history'] = ownProps.history
+            return comment
+        })
+
     return {
         post: post.length > 0 ? post[0] : {},
         comments: comments

@@ -20,6 +20,11 @@ class CommentItem extends Component {
         voteDown(id)
     }
 
+    handleClick = () => {
+        const { id, history } = this.props
+        history.push(`/comments/${id}/edit`)
+    }
+
     render () {
         const { author, voteScore, body, timestamp } = this.props;
         return (
@@ -45,6 +50,12 @@ class CommentItem extends Component {
                     onUpScore={this.handleUpVote}
                     onDownScore={this.handleDownVote}
                 />
+                <button
+                    className='comment-item-body'
+                    onClick={this.handleClick}
+                >
+                    Modify comment
+                </button>
             </section>
         )
     }
