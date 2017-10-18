@@ -41,10 +41,6 @@ class CreateComment extends Component {
         } // else do nothing
     }
 
-    handleMount = inputs => {
-        this.setState({...inputs})
-    }
-
     areValid = () => {
         const keys = Object.keys(this.state)
         const areValid = keys.filter(key => this.state[key].isValid)
@@ -58,7 +54,6 @@ class CreateComment extends Component {
                     isValid={this.areValid()}
                     onChange={this.handleChange}
                     onSubmit={this.handleSubmit}
-                    onMount={this.handleMount}
                     item='comment'
                     label='Comment'
                 />

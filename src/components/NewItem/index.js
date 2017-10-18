@@ -8,7 +8,6 @@ export default class NewItem extends Component {
 
     static defaultProps = {
         classes: [],
-        onMount: () => ({}),
         initialAuthor: '',
         initialItem: '',
         initialTitle: '',
@@ -18,24 +17,6 @@ export default class NewItem extends Component {
     handleSubmit = e => {
         e.preventDefault()
         this.props.onSubmit()
-    }
-
-    componentDidMount () {
-        const { item, onMount } = this.props
-        let initialMount = {
-            'author': {
-                isValid: false
-            },
-            [item]: {
-                isValid: false
-            }
-        }
-        if (item === 'post') {
-           initialMount['title'] = {
-               isValid: false
-           }
-        }
-        onMount(initialMount)
     }
 
     render () {

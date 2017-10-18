@@ -41,10 +41,6 @@ class CreatePost extends Component {
         })
     }
 
-    handleMount = initalInputs => {
-        this.setState({...initalInputs})
-    }
-
     areValid = () => {
         const keys = Object.keys(this.state)
         const validKeys = keys.filter(key => this.state[key].isValid)
@@ -63,7 +59,6 @@ class CreatePost extends Component {
                     isValid={this.areValid()}
                     onChange={this.handleChange}
                     onSubmit={this.handleSubmit}
-                    onMount={this.handleMount}
                 />
             </section>
         )
