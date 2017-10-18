@@ -99,7 +99,11 @@ class PostPage extends Component {
                         </section>
                     </section>
                     <section className={'post-page-body'}>
-                        {post.body}
+                        <section className={'post-page-body-container'}>
+                            <p className={'post-page-body-text'}>
+                                {post.body}
+                            </p>
+                        </section>
                     </section>
                     <section
                         className='post-page-button-container'

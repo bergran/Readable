@@ -35,8 +35,18 @@
 .post-page-body {
     margin-top: 2em;
     border: 1px dashed;
-    min-height: 150px;
     padding: 1.5em;
+
+}
+
+.post-page-body-container {
+    overflow: hidden;
+    overflow-y: auto;
+    height: 250px;
+}
+
+.post-page-body-text {
+    word-break: break-all;
 }
 
 .post-page-vote-section-buttons {
