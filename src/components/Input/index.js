@@ -23,25 +23,22 @@ class Input extends Component {
     }
   }
 
+  componentDidMount () {
+      const { initialValue, name, onChange } = this.props
+      onChange({
+          name: name,
+          value: initialValue,
+          isValid: this.isValid(initialValue)
+      })
+  }
+
   handleChange = (event) => {
-    const { name, onChange, isRequired, validations } = this.props;
-    let isValid;
-
-
-    // If input has validations then will executed else just will put is valid
-    if (validations.length > 0) {
-        const resultValidation = this.handleValidation(event.target.value)
-        isValid = resultValidation ||
-            (isRequired && resultValidation) ||
-            !isRequired
-    } else {
-        isValid = true
-    }
+    const { name, onChange } = this.props;
 
     onChange({
         name,
         value: event.target.value,
-        isValid: isValid,
+        isValid: this.isValid(event.target.value),
     })
     this.setState({
       value: event.target.value
@@ -51,6 +48,19 @@ class Input extends Component {
   handleValidation = value => {
       const { validations } = this.props
       return validations.filter(validation => validation(value)).length === validations.length
+  }
+
+  isValid = (value) => {
+      const { isRequired, validations } = this.props
+      // If input has validations then will executed else just will put is valid
+      if (validations.length > 0) {
+          const resultValidation = this.handleValidation(value)
+          return resultValidation ||
+              (isRequired && resultValidation) ||
+              !isRequired
+      } else {
+          return true
+      }
   }
 
   render () {
