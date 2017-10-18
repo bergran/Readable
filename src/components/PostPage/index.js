@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import ListItems from '../ListItems'
 import VoteScore from '../VoteScore'
 import { getUTCFormat } from "../../utils/tools";
-import ReactLoading from 'react-loading'
+import { LoadingItem } from '../LoadingItem'
 
 class PostPage extends Component {
 
@@ -52,20 +52,18 @@ class PostPage extends Component {
         history.push(`/posts/${match.params.post}/add`)
     }
 
+    handleEdit = () => {
+        const { history, match } = this.props
+        history.push(`/posts/${match.params.post}/edit`)
+    }
+
     render () {
         const { post } = this.props
         const { isLoading } = this.state
 
         if (isLoading) {
             return (
-                <section
-                    className='post-page-container-loading'
-                >
-                    <ReactLoading
-                        type='cylon'
-                        color='#444'
-                    />
-                </section>
+                <LoadingItem />
             )
         }
 
@@ -106,6 +104,12 @@ class PostPage extends Component {
                     <section
                         className='post-page-button-container'
                     >
+                        <button
+                            className='post-page-button'
+                            onClick={this.handleEdit}
+                        >
+                            Edit post
+                        </button>
                         <button
                             className='post-page-button'
                             onClick={this.handleCreateComment}
