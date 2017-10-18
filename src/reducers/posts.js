@@ -27,7 +27,7 @@ export const posts = (state = [], action) => {
             action.posts
         );
       case ADD_POST:
-          return [].concat(state, action.post)
+          return [].concat(state.filter(post => post.id !== action.post.id), action.post)
     default:
       return state
   }
