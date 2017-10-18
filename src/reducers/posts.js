@@ -13,7 +13,6 @@ export const posts = (state = [], action) => {
         action.posts.map(posts => ({...posts, comments: 0}))
       );
       case MORE_POST_SCORE:
-          console.log(action)
           const post = state.filter(post => post.id === action.post)[0]
           post.voteScore += action.score;
           return [].concat(state);
