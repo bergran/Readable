@@ -96,9 +96,16 @@ export const createComment = ({
         author,
         parentId
     }).then(data => {
-        console.log(data)
         dispatch(addComment(data))
     })
+}
+
+export const editPost = (id, title, body) => dispatch => {
+    return API.editPost(id, title, body)
+        .then(data => {
+                dispatch(addPost(data))
+            }
+        )
 }
 
 export const getPost = postId => dispatch => {

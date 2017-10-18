@@ -88,15 +88,15 @@ export const voteUpPost = post => votePost(post, upVote)
 
 export const voteDownPost = post => votePost(post, downVote)
 
-export const editPost = (post, body) => {
-  return fetch(`http://${host}:3001/posts/${post.id}`, {
+export const editPost = (id, title, body) => {
+  return fetch(`http://${host}:3001/posts/${id}`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
     method: 'PUT',
     body: JSON.stringify({
-      title: post.title,
+      title: title,
       body
     })
   })

@@ -37,15 +37,17 @@ export default class NewItem extends Component {
                 className={`newitem-form-container ${classRaw}`}
                 onSubmit={this.handleSubmit}
             >
-                <Input
-                    label='Author'
-                    name='author'
-                    placeholder='Author post'
-                    onChange={onChange}
-                    isRequired
-                    validations={[(value => value.length > 0)]}
-                    initialValue={initialAuthor}
-                />
+                {
+                    !edit && <Input
+                        label='Author'
+                        name='author'
+                        placeholder='Author post'
+                        onChange={onChange}
+                        isRequired
+                        validations={[(value => value.length > 0)]}
+                        initialValue={initialAuthor}
+                    />
+                }
                 {
                     item === 'post' &&
                         <Input

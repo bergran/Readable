@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import NewItem from '../NewItem'
 import { connect } from 'react-redux'
-import { getPost } from '../../thunks/thunks'
+import { getPost, editPost } from '../../thunks/thunks'
 import { LoadingItem } from '../LoadingItem';
 
 class EditPost extends Component {
@@ -25,6 +25,34 @@ class EditPost extends Component {
             })
     }
 
+    handleChange = inputRaw => {
+        let { inputs } = this.state
+        inputs[inputRaw.name] = {
+            isValid: inputRaw.isValid,
+            value: inputRaw.value
+        }
+        this.setState({inputs})
+    }
+
+    handleSubmit = () => {
+        const formValid = this.areValid()
+        if (formValid) {
+            const { match, editPost, history } = this.props
+            const { inputs } =  this.state
+            const postId = match.params.post
+            editPost(postId, inputs.title.value, inputs.post.value)
+                .then(data => {
+                    history.push(`/posts/${postId}`)
+                })
+        }
+    }
+
+    areValid = () => {
+        const { inputs } = this.state
+        const keys = Object.keys(inputs)
+        return keys.filter(key => inputs[key].isValid).length === keys.length
+    }
+
     render () {
         const { post } = this.props
         const { isLoading } = this.state
@@ -42,6 +70,10 @@ class EditPost extends Component {
                     initialTitle={post.title}
                     initialItem={post.body}
                     item='post'
+                    label='Post'
+                    onChange={this.handleChange}
+                    onSubmit={this.handleSubmit}
+                    isValid={this.areValid()}
                     edit
                 />
             </section>
@@ -58,7 +90,8 @@ const mapStateToProps = (state, ownprops) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    getPost: post => dispatch(getPost(post))
+    getPost: post => dispatch(getPost(post)),
+    editPost: (id, title, body) => dispatch(editPost(id, title, body))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPost)

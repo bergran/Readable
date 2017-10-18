@@ -32,29 +32,41 @@ class TextArea extends Component {
         }
     }
 
+    componentDidMount () {
+        const { initialValue, name, onChange } = this.props
+        onChange({
+            name: name,
+            value: initialValue,
+            isValid: this.isValid(initialValue)
+        })
+    }
+
     handleChange = e => {
         const { name, onChange, validations, isRequired } = this.props
         e.preventDefault()
-        let isValid;
         const value = e.target.value
 
-        if (validations.length > 0) {
-            const resultValidations = this.handleValidations(value)
-            isValid = resultValidations ||
-                (isRequired && resultValidations) ||
-                !isRequired
-        } else {
-            isValid = true
-        }
-
         onChange({
-            isValid: isValid,
+            isValid: this.isValid(value),
             value: e.target.value,
             name
         })
         this.setState({
             value: value
         })
+    }
+
+    isValid = (value) => {
+        const { isRequired, validations } = this.props
+        // If input has validations then will executed else just will put is valid
+        if (validations.length > 0) {
+            const resultValidation = this.handleValidations(value)
+            return resultValidation ||
+                (isRequired && resultValidation) ||
+                !isRequired
+        } else {
+            return true
+        }
     }
 
     handleValidations = value => {
