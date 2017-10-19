@@ -108,10 +108,24 @@ export const editPost = (id, title, body) => dispatch => {
         )
 }
 
+export const editComment = (id, body) => dispatch => {
+    return API.editComment(id, Date.now(), body)
+        .then(data => {
+            dispatch(addComment(data))
+        })
+}
+
 export const getPost = postId => dispatch => {
     return API.getPost(postId)
         .then(post => {
             dispatch(addPost(post))
+        })
+}
+
+export const getComment = commentId => dispatch => {
+    return API.getComment(commentId)
+        .then(data => {
+            dispatch(addComment(data))
         })
 }
 

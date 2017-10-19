@@ -164,15 +164,15 @@ export const voteUpComment = comment => voteComment(comment, upVote)
 
 export const voteDownComment = comment => voteComment(comment, downVote)
 
-export const editComment = (comment, body) => {
-  return fetch(`http://${host}:3001/comments/${comment.id}`, {
+export const editComment = (id, timestamp, body) => {
+  return fetch(`http://${host}:3001/comments/${id}`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
     method: 'PUT',
     body: JSON.stringify({
-      title: comment.title,
+      timestamp: timestamp,
       body: body
     })
   })
