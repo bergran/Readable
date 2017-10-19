@@ -19,7 +19,7 @@ class CategoryPage extends Component {
     componentDidMount () {
         const { match, fillPosts, updateTime } = this.props
         const category = match.params.category
-        fillPosts(updateTime, category)
+        fillPosts(category)
             .then(data => {
                 this.setState({isLoading: false})
             })
@@ -68,9 +68,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => {
-    const fillPosts = updaterThunk(fillPostCategoryThunk)
     return {
-        fillPosts: (time, category)=> dispatch(fillPosts(time, category))
+        fillPosts: category => dispatch(fillPostCategoryThunk(category))
     }
 }
 

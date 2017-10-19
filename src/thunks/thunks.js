@@ -5,7 +5,8 @@ import {
     lessPostScore,
     morePostScore,
     addPost,
-    deletePost
+    deletePost,
+    updatePostComments
 } from '../actions/post'
 import {
     fillComments,
@@ -23,21 +24,24 @@ export const fillCategoriesThunk = next => dispatch => {
   return API.getCategories()
     .then(categories => {
         dispatch(fillCategories(categories))
-        return Promise.resolve('category')
     })
-}
-
-export const fillPostsThunk = next => dispatch => {
-    return API.getAllPost()
-        .then(postsRaw => {
-            dispatch(fillPost(postsRaw))
-        })
 }
 
 export const fillCommentsPost = post => dispatch => {
     return API.getCommentsPost(post)
         .then(comments => {
             dispatch(fillComments(comments))
+            dispatch(updatePostComments(post, comments.length))
+        })
+}
+
+export const fillPostsThunk = next => dispatch => {
+    return API.getAllPost()
+        .then(postsRaw => {
+            dispatch(fillPost(postsRaw))
+            postsRaw.forEach(post =>
+                dispatch(fillCommentsPost(post.id))
+            )
         })
 }
 

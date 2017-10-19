@@ -4,7 +4,8 @@ import {
     MORE_POST_SCORE,
     LESS_POST_SCORE,
     ADD_POST,
-    DELETE_POST
+    DELETE_POST,
+    UPDATE_COMMENTS
 } from '../actions/post'
 
 export const posts = (state = [], action) => {
@@ -30,6 +31,17 @@ export const posts = (state = [], action) => {
           return [].concat(state.filter(post => post.id !== action.post.id), action.post)
       case DELETE_POST:
           return [].concat(state.filter(post => post.id !== action.postId))
+      case UPDATE_COMMENTS:
+          const postRaw = state.filter(post => post.id === action.post)
+          const posts = state.filter(post => post.id !== action.post)
+          let post2;
+          if (postRaw.length === 1) {
+              post2 = postRaw[0]
+              post2.comments = action.commentsLength
+              console.log('post', post2)
+              return [].concat(posts, [post2])
+          }
+          return state
     default:
       return state
   }

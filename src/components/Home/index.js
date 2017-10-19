@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ListItems from "../ListItems/index";
-import { updaterThunk, fillCategoriesThunk, fillPostsThunk } from "../../thunks/thunks";
+import { fillCategoriesThunk, fillPostsThunk } from "../../thunks/thunks";
 
 
 class Home extends Component {
@@ -15,14 +15,13 @@ class Home extends Component {
 
   componentDidMount () {
     const { category, posts } = this.props.updateTime
-    const { fillCategoriesPosts, fillPost, updateTime } = this.props
+    const { fillCategoriesPosts, fillPost } = this.props
     Promise.all([
-        fillCategoriesPosts(updateTime ,category),
-        fillPost( updateTime, posts)
-    ])
-        .then(() => {
-            this.setState({isLoading: false})
-          })
+        fillCategoriesPosts(category),
+        fillPost(posts)
+    ]).then(() => {
+        this.setState({isLoading: false})
+      })
   }
 
   render() {
@@ -76,13 +75,9 @@ const mapStateToProps = (state, ownProps)=> {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-    const fillCategory = updaterThunk(fillCategoriesThunk)
-    const fillPosts = updaterThunk(fillPostsThunk)
-    return {
-        fillCategoriesPosts: time => dispatch(fillCategory(time)),
-        fillPost: time => dispatch(fillPosts(time)),
-    }
-}
+const mapDispatchToProps = dispatch => ({
+    fillCategoriesPosts: () => dispatch(fillCategoriesThunk()),
+    fillPost: categories => dispatch(fillPostsThunk(categories))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

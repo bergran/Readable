@@ -19,13 +19,19 @@ class PostItem extends Component {
     }
 
     render () {
-        const { title, author, voteScore } = this.props
+        const {
+            title,
+            author,
+            voteScore,
+            comments
+        } = this.props
         return (
             <section className='post-item' >
                 <h1 onClick={this.handleClick}>{ title }</h1>
                 <section>
                     <p>author: { author }</p>
                     <p>votes: { voteScore }</p>
+                    <p>comments: { comments }</p>
                     <button
                         onClick={this.handleDelete}
                         >
