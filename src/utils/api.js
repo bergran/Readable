@@ -106,8 +106,8 @@ export const editPost = (id, title, body) => {
   )
 }
 
-export const deletePost = post => {
-  return fetch(`http://${host}:3001/posts/${post.id}`, {
+export const deletePost = postId => {
+  return fetch(`http://${host}:3001/posts/${postId}`, {
     headers,
     method: 'DELETE'
   })

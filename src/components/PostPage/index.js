@@ -66,11 +66,15 @@ class PostPage extends Component {
                 <LoadingItem />
             )
         }
-
-        if (post.deleted) {
+        if (Object.keys(post).length === 0 || post.deleted) {
             return (
-                <section>
-                    Sorry, this post is deleted :'(
+                <section className={'post-page-container'}>
+                    <p className={'post-page-container-text'}>
+                        Sorry, we could not get this post. Maybe this post was deleted or doesnt exist :'(
+                    </p>
+                    <p className={'post-page-container-text'}>
+                        Go to <Link to={'/'}>Home</Link>
+                    </p>
                 </section>
             )
         } else {

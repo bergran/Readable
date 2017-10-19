@@ -39,6 +39,10 @@
 
 }
 
+.post-page-container-text {
+    text-align: center;
+}
+
 .post-page-body-container {
     overflow: hidden;
     overflow-y: auto;
