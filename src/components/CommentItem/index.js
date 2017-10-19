@@ -20,7 +20,7 @@ class CommentItem extends Component {
         voteDown(id)
     }
 
-    handleClick = () => {
+    handleEdit = () => {
         const { id, history } = this.props
         history.push(`/comments/${id}/edit`)
     }
@@ -28,7 +28,7 @@ class CommentItem extends Component {
     render () {
         const { author, voteScore, body, timestamp } = this.props;
         return (
-            <section className='comment-item comment-item-background-gradient' onClick={this.handleClick}>
+            <section className='comment-item comment-item-background-gradient'>
                 <section className='comment-item-header'>
                     <section className='comment-item-header-subtitle'>
                         <article className='comment-item-header-subtitle-article'>
@@ -52,7 +52,7 @@ class CommentItem extends Component {
                 />
                 <button
                     className='comment-item-body'
-                    onClick={this.handleClick}
+                    onClick={this.handleEdit}
                 >
                     Modify comment
                 </button>
