@@ -1,7 +1,13 @@
 import './styles.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getPost, fillCommentsPost, voteUpPostThunk, voteDownPostThunk } from '../../thunks/thunks'
+import {
+    getPost,
+    fillCommentsPost,
+    voteUpPostThunk,
+    voteDownPostThunk,
+    deletePostThunk
+} from '../../thunks/thunks'
 import { Link } from 'react-router-dom'
 import ListItems from '../ListItems'
 import VoteScore from '../VoteScore'
@@ -57,6 +63,14 @@ class PostPage extends Component {
         history.push(`/posts/${match.params.post}/edit`)
     }
 
+    handleDelete = () => {
+        const { post, deletePost, history } = this.props
+        deletePost(post.id)
+            .then(data => {
+                history.push('/')
+            })
+    }
+
     render () {
         const { post } = this.props
         const { isLoading } = this.state
@@ -101,6 +115,11 @@ class PostPage extends Component {
                                 onUpScore={this.handlerVoteUp}
                                 onDownScore={this.handlerVoteDown}
                             />
+                            <button
+                                onClick={this.handleDelete}
+                            >
+                                Delete post
+                            </button>
                         </section>
                     </section>
                     <section className={'post-page-body'}>
@@ -156,7 +175,8 @@ const mapDispatchToProps = dispatch => ({
     addPost: post => dispatch(getPost(post)),
     fillComments: post => dispatch(fillCommentsPost(post)),
     voteUp: post => dispatch(voteUpPostThunk(post)),
-    voteDown: post => dispatch(voteDownPostThunk(post))
+    voteDown: post => dispatch(voteDownPostThunk(post)),
+    deletePost: postId => dispatch(deletePostThunk(postId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostPage)
