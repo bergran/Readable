@@ -3,7 +3,8 @@ import {
     FILL_POST_BY_CATEGORY,
     MORE_POST_SCORE,
     LESS_POST_SCORE,
-    ADD_POST
+    ADD_POST,
+    DELETE_POST
 } from '../actions/post'
 
 export const posts = (state = [], action) => {
@@ -27,6 +28,8 @@ export const posts = (state = [], action) => {
         );
       case ADD_POST:
           return [].concat(state.filter(post => post.id !== action.post.id), action.post)
+      case DELETE_POST:
+          return [].concat(state.filter(post => post.id !== action.postId))
     default:
       return state
   }

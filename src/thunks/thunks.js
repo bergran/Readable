@@ -1,5 +1,12 @@
 import { fillCategories } from '../actions/categories'
-import {fillPost, fillPostCategory, lessPostScore, morePostScore, addPost} from '../actions/post'
+import {
+    fillPost,
+    fillPostCategory,
+    lessPostScore,
+    morePostScore,
+    addPost,
+    deletePost
+} from '../actions/post'
 import { updateTime } from "../actions/updateTime";
 import { fillComments, moreCommentScore, lessCommentScore, addComment } from "../actions/comment";
 import * as API from '../utils/api'
@@ -126,6 +133,13 @@ export const getComment = commentId => dispatch => {
     return API.getComment(commentId)
         .then(data => {
             dispatch(addComment(data))
+        })
+}
+
+export const deletePostThunk = postId => dispatch => {
+    return API.deletePost(postId)
+        .then(data => {
+            dispatch(deletePost(postId))
         })
 }
 

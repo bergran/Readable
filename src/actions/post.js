@@ -40,9 +40,9 @@ const editBodyPost = (post, body) => ({
   body
 })
 
-const deletePost = post => ({
+const deletePost = postId => ({
   type: DELETE_POST,
-  post
+  postId
 })
 
 // TODO: Add thunk methods to Middleware
