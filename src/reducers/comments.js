@@ -1,4 +1,4 @@
-import { FILL_COMMENTS, ADD_COMMENT, MORE_COMMENT_SCORE, LESS_COMMENT_SCORE } from '../actions/comment'
+import {FILL_COMMENTS, ADD_COMMENT, MORE_COMMENT_SCORE, LESS_COMMENT_SCORE, DELETE_COMMENT} from '../actions/comment'
 
 export const comments = (state = [], action) => {
   switch (action.type) {
@@ -14,6 +14,8 @@ export const comments = (state = [], action) => {
         const comment1 = state.filter(comment => comment.id === action.comment)[0]
         comment1.voteScore -= action.score
         return [].concat(state)
+    case DELETE_COMMENT:
+        return [].concat(state.filter(comment => comment.id !== action.id))
     default:
       return state
   }

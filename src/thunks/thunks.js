@@ -7,8 +7,14 @@ import {
     addPost,
     deletePost
 } from '../actions/post'
+import {
+    fillComments,
+    moreCommentScore,
+    lessCommentScore,
+    addComment,
+    deleteComment
+} from "../actions/comment";
 import { updateTime } from "../actions/updateTime";
-import { fillComments, moreCommentScore, lessCommentScore, addComment } from "../actions/comment";
 import * as API from '../utils/api'
 
 const timeToUpdate = process.env.REACT_APP_UPDATE_TIME_INTERVAL
@@ -140,6 +146,13 @@ export const deletePostThunk = postId => dispatch => {
     return API.deletePost(postId)
         .then(data => {
             dispatch(deletePost(postId))
+        })
+}
+
+export const deleteCommentThunk = commentId => dispatch => {
+    return API.deleteComment(commentId)
+        .then(data => {
+            dispatch(deleteComment(commentId))
         })
 }
 

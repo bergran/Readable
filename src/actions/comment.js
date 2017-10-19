@@ -40,9 +40,9 @@ const deleteCommentPost = (comment, post) => ({
     post
 })
 
-const deleteComment = comment => ({
+const deleteComment = id => ({
     type: DELETE_COMMENT,
-    comment
+    id
 })
 
 export {

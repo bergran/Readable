@@ -5,7 +5,8 @@ import { getUTCFormat } from "../../utils/tools";
 import { connect } from 'react-redux'
 import {
     voteUpCommentThunk,
-    voteDownCommentThunk
+    voteDownCommentThunk,
+    deleteCommentThunk
 } from '../../thunks/thunks'
 
 class CommentItem extends Component {
@@ -23,6 +24,11 @@ class CommentItem extends Component {
     handleEdit = () => {
         const { id, history } = this.props
         history.push(`/comments/${id}/edit`)
+    }
+
+    handleDelete = () => {
+        const { id, deleteComment } = this.props
+        deleteComment(id)
     }
 
     render () {
@@ -56,6 +62,12 @@ class CommentItem extends Component {
                 >
                     Modify comment
                 </button>
+                <button
+                    className='comment-item-body'
+                    onClick={this.handleDelete}
+                >
+                    Delete comment
+                </button>
             </section>
         )
     }
@@ -64,7 +76,8 @@ class CommentItem extends Component {
 const mapStateToProps = () => ({})
 const mapDispatchToProps = dispatch => ({
     voteUp: comment => dispatch(voteUpCommentThunk(comment)),
-    voteDown: comment => dispatch(voteDownCommentThunk(comment))
+    voteDown: comment => dispatch(voteDownCommentThunk(comment)),
+    deleteComment: commentId => dispatch(deleteCommentThunk(commentId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentItem)
