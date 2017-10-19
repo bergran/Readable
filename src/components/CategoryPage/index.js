@@ -6,6 +6,7 @@ import { updaterThunk ,fillPostCategoryThunk } from "../../thunks/thunks";
 import { Link } from 'react-router-dom'
 import './styles.css'
 import '../../assest/font-awesome/css/font-awesome.min.css'
+import { LoadingItem } from '../LoadingItem'
 
 class CategoryPage extends Component {
 
@@ -48,7 +49,7 @@ class CategoryPage extends Component {
                             />
                             :
                             <section>
-                                Loading...
+                                <LoadingItem />
                             </section>
 
                     }

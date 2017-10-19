@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ListItems from "../ListItems/index";
 import { fillCategoriesThunk, fillPostsThunk } from "../../thunks/thunks";
+import { LoadingItem } from "../LoadingItem";
 
 
 class Home extends Component {
@@ -46,7 +47,9 @@ class Home extends Component {
                   />
                 </section>
             :
-              <div> Loading</div>
+              <section>
+                  <LoadingItem />
+              </section>
         }
       </section>
     )
