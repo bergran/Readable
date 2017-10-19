@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import NewItem from '../NewItem'
 import {LoadingItem} from "../LoadingItem/index";
+import { getComment, editComment } from '../../thunks/thunks'
+import './styles.css'
+
 
 class EditComment extends Component {
 
@@ -14,7 +17,11 @@ class EditComment extends Component {
     }
 
     componentDidMount () {
-        this.setState({isLoading: false})
+        const { getComment, match } = this.props
+        getComment(match.params.comment)
+            .then(data => {
+                this.setState({isLoading: false})
+            })
     }
 
     handleChange = inputRaw => {
@@ -29,7 +36,11 @@ class EditComment extends Component {
     handleSubmit = () => {
         const formValid = this.areValid()
         if (formValid) {
-            alert('hey!')
+            const { editComment, match, comment, history } = this.props
+            const { inputs } = this.state
+            const postId = comment.parentId
+            editComment(match.params.comment, inputs.comment.value)
+                .then(history.push(`/posts/${postId}`))
         }
     }
 
@@ -45,6 +56,14 @@ class EditComment extends Component {
         if (isLoading) {
             return (
                 <LoadingItem />
+            )
+        } else if (Object.keys(comment).length === 0 || comment.delete || comment.parentDelete) {
+            return (
+                <section className='editcomment-container'>
+                    <p className='editcomment-container-text'>
+                        Comment does not exist. This could be deleted or failed comment route
+                    </p>
+                </section>
             )
         }
         return (
@@ -71,4 +90,9 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps)(EditComment)
+const mapDispatchToProps = dispatch => ({
+    getComment: comment => dispatch(getComment(comment)),
+    editComment: (id, body) => dispatch(editComment(id, body))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditComment)
