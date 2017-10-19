@@ -38,7 +38,6 @@ export const posts = (state = [], action) => {
           if (postRaw.length === 1) {
               post2 = postRaw[0]
               post2.comments = action.commentsLength
-              console.log('post', post2)
               return [].concat(posts, [post2])
           }
           return state
