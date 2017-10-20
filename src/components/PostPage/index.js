@@ -11,9 +11,10 @@ import {
 import { Link } from 'react-router-dom'
 import ListItems from '../ListItems'
 import VoteScore from '../VoteScore'
-import { getUTCFormat } from "../../utils/tools";
+import { getUTCFormat, Capitalize } from "../../utils/tools";
 import { LoadingItem } from '../LoadingItem'
-import { Capitalize } from "../../utils/tools";
+import '../../assest/font-awesome/css/font-awesome.min.css'
+
 
 class PostPage extends Component {
 
@@ -121,8 +122,10 @@ class PostPage extends Component {
                             />
                             <button
                                 onClick={this.handleDelete}
+                                className={'post-page-button-header post-page-button-danger'}
                             >
-                                Delete post
+                                <i className='fa fa-remove' aria-hidden="true"></i>
+                                <span> Delete </span>
                             </button>
                         </section>
                     </section>
@@ -140,13 +143,15 @@ class PostPage extends Component {
                             className='post-page-button'
                             onClick={this.handleEdit}
                         >
-                            Edit post
+                            <i className='fa fa-edit' aria-hidden="true"></i>
+                            <span> Edit post</span>
                         </button>
                         <button
                             className='post-page-button'
                             onClick={this.handleCreateComment}
                         >
-                            Add new Comment
+                            <i className='fa fa-plus-circle' aria-hidden="true"></i>
+                            <span> Add new Comment</span>
                         </button>
                     </section>
                     <ListItems

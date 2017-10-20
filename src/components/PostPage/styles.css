@@ -69,6 +69,34 @@
     height: 4em;
     color: #FFF;
     background-color: #ff6908;
+    border: none;
+}
+
+.post-page-button-header {
+    color: #FFF;
+    background-color: #ff6908;
+    border: none;
+    width: 10em;
+    height: 3em;
+    border: none;
+    margin-top: 0.5em;
+}
+
+.post-page-button,
+.post-page-button-header {
+    cursor: pointer;
+}
+
+.post-page-button-danger {
+    background-color: #ff0911;
+}
+
+.post-page-button-danger:hover {
+    background-color: #c40911;
+}
+
+.post-page-button:hover {
+    background-color: #259600;
 }
 
 @media screen and (max-width: 900px) {
