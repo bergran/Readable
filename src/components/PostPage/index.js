@@ -13,6 +13,7 @@ import ListItems from '../ListItems'
 import VoteScore from '../VoteScore'
 import { getUTCFormat } from "../../utils/tools";
 import { LoadingItem } from '../LoadingItem'
+import { Capitalize } from "../../utils/tools";
 
 class PostPage extends Component {
 
@@ -108,7 +109,10 @@ class PostPage extends Component {
                                 <p><strong>Date:</strong> {getUTCFormat(post.timestamp)}</p>
                             </article>
                             <article className={'post-page-header-article'}>
-                                <p><strong>Category:</strong> <Link to={`/categories/${post.category}`}>{post.category}</Link></p>
+                                <p>
+                                    <strong>Category: </strong>
+                                    <Link to={`/categories/${post.category}`}>{Capitalize(post.category)}</Link>
+                                </p>
                             </article>
                             <VoteScore
                                 score={post.voteScore}
