@@ -50,6 +50,9 @@ class CreateComment extends Component {
     render () {
         return (
             <section className='create-comment-page-container'>
+                <h1 className='newitem-form-container-title'>
+                    Create new comment
+                </h1>
                 <NewItem
                     isValid={this.areValid()}
                     onChange={this.handleChange}
