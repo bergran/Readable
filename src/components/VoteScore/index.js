@@ -13,8 +13,11 @@ class VoteScore extends Component {
         const classRaw = classNames.join(' ')
         return (
             <section className={`voteScore ${classRaw}`}>
-                <p>Vote { score }</p>
-                <section className='voteScore-section-buttons'>
+                <p
+                    className={'voteScore-section'}
+                ><strong>Score</strong> { score }</p>
+                <section
+                    className='voteScore-section voteScore-section-buttons'>
                     <button
                         className='voteScore-button voteScore-up'
                         onClick={onUpScore}
