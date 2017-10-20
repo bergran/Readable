@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ListItems from "../ListItems/index";
 import { Capitalize } from '../../utils/tools'
-import { updaterThunk ,fillPostCategoryThunk } from "../../thunks/thunks";
+import { fillPostCategoryThunk } from "../../thunks/thunks";
 import { Link } from 'react-router-dom'
 import './styles.css'
 import '../../assest/font-awesome/css/font-awesome.min.css'
@@ -30,7 +30,7 @@ class CategoryPage extends Component {
         const { posts, history, match } = this.props
         const { isLoading } = this.state
         return (
-            <section>
+            <section className={'category-page-container'}>
                 <section className='category-page-header'>
                     <h1 className='category-page-header-title'>{ Capitalize(match.params.category) }</h1>
                     <section className='category-page-create-post-section'>

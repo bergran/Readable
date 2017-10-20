@@ -1,3 +1,7 @@
+.category-page-container {
+    padding: 2em;
+}
+
 .category-page-button-text {
     border: 2px solid #259600;
     display: flex;
