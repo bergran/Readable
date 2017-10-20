@@ -3,6 +3,7 @@ import NewItem from '../NewItem'
 import { connect } from 'react-redux'
 import { getPost, editPost } from '../../thunks/thunks'
 import { LoadingItem } from '../LoadingItem';
+import './styles.css'
 
 class EditPost extends Component {
 
@@ -65,6 +66,9 @@ class EditPost extends Component {
 
         return (
             <section className='editpost-container'>
+                <h1 className='newitem-form-container-title'>
+                    Edit post
+                </h1>
                 <NewItem
                     initialAuthor={post.author}
                     initialTitle={post.title}
