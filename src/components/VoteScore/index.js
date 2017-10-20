@@ -13,7 +13,7 @@ class VoteScore extends Component {
         const classRaw = classNames.join(' ')
         return (
             <section className={`voteScore ${classRaw}`}>
-                <p>Vote: { score }</p>
+                <p>Vote { score }</p>
                 <section className='voteScore-section-buttons'>
                     <button
                         className='voteScore-button voteScore-up'

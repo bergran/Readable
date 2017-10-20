@@ -8,6 +8,8 @@ import {
     voteDownCommentThunk,
     deleteCommentThunk
 } from '../../thunks/thunks'
+import '../../assest/font-awesome/css/font-awesome.min.css'
+
 
 class CommentItem extends Component {
 
@@ -32,13 +34,18 @@ class CommentItem extends Component {
     }
 
     render () {
-        const { author, voteScore, body, timestamp } = this.props;
+        const {
+            author,
+            voteScore,
+            body,
+            timestamp
+        } = this.props;
         return (
             <section className='comment-item comment-item-background-gradient'>
                 <section className='comment-item-header'>
                     <section className='comment-item-header-subtitle'>
                         <article className='comment-item-header-subtitle-article'>
-                            <p>author: { author }</p>
+                            <p>By: { author }</p>
                         </article>
                         <article className='comment-item-header-subtitle-article'>
                             <p>date: { getUTCFormat(timestamp) }</p>
@@ -56,18 +63,22 @@ class CommentItem extends Component {
                     onUpScore={this.handleUpVote}
                     onDownScore={this.handleDownVote}
                 />
-                <button
-                    className='comment-item-body'
-                    onClick={this.handleEdit}
-                >
-                    Modify comment
-                </button>
-                <button
-                    className='comment-item-body'
-                    onClick={this.handleDelete}
-                >
-                    Delete comment
-                </button>
+                <section className='comment-items-button-container'>
+                    <button
+                        className='comment-item-body-button comment-item-body-button-warning'
+                        onClick={this.handleEdit}
+                    >
+                        <i className="fa fa-edit" aria-hidden="true"></i>
+                        Modify
+                    </button>
+                    <button
+                        className='comment-item-body-button comment-item-body-button-danger'
+                        onClick={this.handleDelete}
+                    >
+                        <i className="fa fa-remove" aria-hidden="true"></i>
+                        Delete
+                    </button>
+                </section>
             </section>
         )
     }
