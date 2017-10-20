@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './styles.css'
 
 class Category extends Component {
 
@@ -10,8 +11,8 @@ class Category extends Component {
     render () {
         const { id } = this.props
         return (
-            <section className={'category'} onClick={this.handleClick}>
-                    <h1>{ id }</h1>
+            <section className={'categoryitem categoryitem-gray'} onClick={this.handleClick}>
+                    <h1 className={'categoryitem-title'}>{ id }</h1>
             </section>
         )
     }
