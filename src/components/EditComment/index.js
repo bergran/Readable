@@ -68,6 +68,9 @@ class EditComment extends Component {
         }
         return (
             <section className='editcomment-container'>
+                <h1 className='newitem-form-container-title'>
+                    Edit comment
+                </h1>
                 <NewItem
                     label={'Comment'}
                     item={'comment'}
