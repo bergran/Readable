@@ -60,7 +60,9 @@ class EditPost extends Component {
 
         if (isLoading) {
             return (
-                <LoadingItem />
+                <section className="editpost-container">
+                    <LoadingItem />
+                </section>
             )
         }
 

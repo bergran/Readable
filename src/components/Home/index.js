@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import ListItems from "../ListItems/index";
 import { fillCategoriesThunk, fillPostsThunk } from "../../thunks/thunks";
 import { LoadingItem } from "../LoadingItem";
+import './styles.css'
 
 
 class Home extends Component {
