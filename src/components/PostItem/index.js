@@ -5,6 +5,8 @@ import {
     voteDownPostThunk,
     deletePostThunk
 } from '../../thunks/thunks'
+import './styles.css'
+import VoteScore from '../VoteScore'
 
 class PostItem extends Component {
 
@@ -18,25 +20,57 @@ class PostItem extends Component {
         deletePost(id)
     }
 
+    handleUpScore = () => {
+        const { voteUp, id } = this.props
+        voteUp(id)
+    }
+
+    handleDownScore = () => {
+        const { voteDown, id } = this.props
+        voteDown(id)
+    }
+
     render () {
         const {
             title,
             author,
-            voteScore,
             comments
         } = this.props
         return (
-            <section className='post-item' >
-                <h1 onClick={this.handleClick}>{ title }</h1>
-                <section>
-                    <p>author: { author }</p>
-                    <p>votes: { voteScore }</p>
-                    <p>comments: { comments }</p>
-                    <button
-                        onClick={this.handleDelete}
-                        >
-                        Delete post
-                    </button>
+            <section className='post-item-container' >
+                <h1
+                    className={'post-item-title'}
+                    onClick={this.handleClick}
+                >
+                    { title }
+                </h1>
+                <section
+                    className={'post-item-container-attributes'}
+                >
+                    <section
+                        className={'post-item-container-attribute'}
+                    >
+                        <p
+                            className={'post-item-container-text'}
+                        >author: { author }</p>
+                    </section>
+                    <section
+                        className={'post-item-container-attribute'}
+                    >
+                        <p
+                            className={'post-item-container-text'}
+                        >comments: { comments }</p>
+                    </section>
+                    <section
+                        className={'post-item-container-attribute'}
+                    >
+                        <VoteScore
+                            onUpScore={this.handleUpScore}
+                            onDownScore={this.handleDownScore}
+                            score={this.props.voteScore}
+                        />
+                    </section>
+
                 </section>
             </section>
         )
