@@ -23,7 +23,6 @@ class App extends Component {
                 title={'menu'}
                 sections={[
                     {title: 'Home', path: '/'},
-                    {title: 'Create post', path: '/'},
                 ]}
               />
           </Nav>
