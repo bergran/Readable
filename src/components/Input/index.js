@@ -13,7 +13,8 @@ class Input extends Component {
     placeholder: '',
     initialValue: '',
     onChange: () => ({}),
-    validations: []
+    validations: [],
+    value: ''
   }
 
   constructor (props) {
@@ -33,15 +34,13 @@ class Input extends Component {
   }
 
   handleChange = (event) => {
+    event.preventDefault()
     const { name, onChange } = this.props;
-
+    console.log('input', name, event.target.value)
     onChange({
         name,
         value: event.target.value,
         isValid: this.isValid(event.target.value),
-    })
-    this.setState({
-      value: event.target.value
     })
   }
 
@@ -64,8 +63,7 @@ class Input extends Component {
   }
 
   render () {
-    const { label, type, name, placeholder } = this.props
-    const { value } = this.state
+    const { label, type, name, placeholder, value } = this.props
     return (
       <section className='input-container-out'>
         <label className='input-container-label'>

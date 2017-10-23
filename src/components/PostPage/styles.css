@@ -46,7 +46,7 @@
 .post-page-body-container {
     overflow: hidden;
     overflow-y: auto;
-    height: 250px;
+    height: 125px;
 }
 
 .post-page-body-text {

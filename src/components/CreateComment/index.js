@@ -24,20 +24,16 @@ class CreateComment extends Component {
     handleSubmit = () => {
         const formValid = this.areValid()
         if (formValid) {
-            // send new post
-            const { addComment, match, history } = this.props
+            const { addComment, postId } = this.props
             const { author, comment } = this.state
             const uuid = uuid4()
-            const postId = match.params.post
             addComment({
                 id: uuid,
                 timestamp: Date.now(),
                 body: comment.value,
                 author: author.value,
                 parentId: postId
-            }).then(post =>
-                history.push(`/posts/${postId}`)
-            )
+            })
         } // else do nothing
     }
 

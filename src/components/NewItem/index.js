@@ -14,9 +14,33 @@ export default class NewItem extends Component {
         edit: false
     }
 
+    constructor (props) {
+        super(props)
+        this.state = {
+            [props.item]: {},
+            'title': {},
+            'author': {}
+        }
+    }
+
     handleSubmit = e => {
+        const { onSubmit, item } = this.props
+
         e.preventDefault()
         this.props.onSubmit()
+        this.handleChange({name: item, value: '', isValid: false})
+        this.handleChange({name: 'author', value: '', isValid: false})
+        if (item === 'post') this.handleChange({name: 'title', value: '', isValid: false})
+    }
+
+    handleChange = inputRaw => {
+        this.props.onChange(inputRaw)
+        this.setState({
+            [inputRaw.name]: {
+                value: inputRaw.value,
+                isValid: inputRaw.isValid
+            }
+        })
     }
 
     render () {
@@ -25,12 +49,15 @@ export default class NewItem extends Component {
             label,
             isValid,
             item,
-            onChange,
             initialAuthor,
             initialItem,
             initialTitle,
             edit
         } = this.props
+        const {
+            title,
+            author
+        } = this.state
         const classRaw = classes.join(' ')
         return (
             <form
@@ -42,10 +69,12 @@ export default class NewItem extends Component {
                         label='Author'
                         name='author'
                         placeholder='Author post'
-                        onChange={onChange}
+                        onChange={this.handleChange}
                         isRequired
-                        validations={[(value => value.length > 0)]}
+                        validations={[(value => value.length > 5)]}
                         initialValue={initialAuthor}
+                        value={author.value}
+                        onKeyPress={this.handleKeyPress}
                     />
                 }
                 {
@@ -54,20 +83,22 @@ export default class NewItem extends Component {
                             label='Title'
                             name='title'
                             placeholder='Title post'
-                            onChange={onChange}
+                            onChange={this.handleChange}
                             isRequired
                             initialValue={initialTitle}
                             validations={[(value => value.length > 0)]}
+                            value={title.value}
                         />
                 }
                 <TextArea
-                    onChange={onChange}
+                    onChange={this.handleChange}
                     name={item}
                     label={label}
                     isRequired
                     initialValue={initialItem}
                     placeholder={`Write here your ${item.toLowerCase()}`}
                     validations={[(value => value.length > 0)]}
+                    value={this.state[item].value}
                 />
                 <button
                     className={classNames({

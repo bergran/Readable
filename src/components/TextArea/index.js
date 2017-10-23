@@ -74,10 +74,9 @@ class TextArea extends Component {
         return validations.filter(validation => validation(value)).length === validations.length
     }
 
-
     render () {
         const { label, placeholder } = this.props
-        const { value } = this.state
+        const { value } = this.props
         return (
             <section className='textarea'>
                 <label className='textarea-label'>{label}</label>

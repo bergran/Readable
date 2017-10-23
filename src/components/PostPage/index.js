@@ -14,6 +14,7 @@ import VoteScore from '../VoteScore'
 import { getUTCFormat, Capitalize } from "../../utils/tools";
 import { LoadingItem } from '../LoadingItem'
 import '../../assest/font-awesome/css/font-awesome.min.css'
+import CreateComment from '../CreateComment'
 
 
 class PostPage extends Component {
@@ -53,11 +54,6 @@ class PostPage extends Component {
     handlerVoteDown = () => {
         const { post, voteDown } = this.props
         voteDown(post.id)
-    }
-
-    handleCreateComment = () => {
-        const { history, match } = this.props
-        history.push(`/posts/${match.params.post}/add`)
     }
 
     handleEdit = () => {
@@ -146,14 +142,10 @@ class PostPage extends Component {
                             <i className='fa fa-edit' aria-hidden="true"></i>
                             <span> Edit post</span>
                         </button>
-                        <button
-                            className='post-page-button'
-                            onClick={this.handleCreateComment}
-                        >
-                            <i className='fa fa-plus-circle' aria-hidden="true"></i>
-                            <span> Add new Comment</span>
-                        </button>
                     </section>
+                    <CreateComment
+                        postId={post.id}
+                    />
                     <ListItems
                         type='comments'
                         items={comments}
