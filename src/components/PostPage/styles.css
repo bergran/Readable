@@ -1,5 +1,5 @@
 .post-page-container {
-    margin: 2em 3.5em;
+    margin: 1em 3.5em;
 }
 
 .post-page-container-loading {
@@ -13,7 +13,7 @@
     width: 100%;
     background-color: #ff6908;
     box-sizing: border-box;
-    padding: 1em;
+    padding: 0.5em;
 }
 
 .post-page-header-title {
@@ -66,7 +66,7 @@
 
 .post-page-button {
     width: 15em;
-    height: 4em;
+    height: 2em;
     color: #FFF;
     background-color: #ff6908;
     border: none;

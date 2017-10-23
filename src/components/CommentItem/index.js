@@ -54,9 +54,11 @@ class CommentItem extends Component {
                 </section>
                 <section className='comment-item-body'>
                     <h1 className='comment-item-body-title'>Comment</h1>
-                    <p>
-                        { body }
-                    </p>
+                    <section className="comment-item-body-text">
+                        <p>
+                            { body }
+                        </p>
+                    </section>
                 </section>
                 <VoteScore
                     score={voteScore}

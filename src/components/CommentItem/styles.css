@@ -53,6 +53,12 @@
     border: 1px #fff solid;
 }
 
+.comment-item-body-text {
+    height: 85px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
 @media screen and (max-width: 800px) {
     .comment-item{
         width: 300px;
@@ -62,5 +68,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    .comment-item-body-text {
+        height: 150px;
     }
 }
