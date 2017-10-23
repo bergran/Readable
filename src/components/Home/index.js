@@ -16,11 +16,10 @@ class Home extends Component {
   }
 
   componentDidMount () {
-    const { category, posts } = this.props.updateTime
     const { fillCategoriesPosts, fillPost } = this.props
     Promise.all([
-        fillCategoriesPosts(category),
-        fillPost(posts)
+        fillCategoriesPosts(),
+        fillPost()
     ]).then(() => {
         this.setState({isLoading: false})
       })
@@ -45,19 +44,23 @@ class Home extends Component {
                       type='posts'
                       items={posts}
                       push={history.push}
+                      sortAttrs={[
+                          {value: 'timestamp', title: 'newest'},
+                          {value: '-timestamp', title: 'oldest'},
+                          {value: '-voteScore', title: 'max-vote'},
+                          {value: 'voteScore', title: 'min-vote'}
+                      ]}
                   />
                 </section>
             :
-              <section>
                   <LoadingItem />
-              </section>
         }
       </section>
     )
   }
 }
 
-const mapStateToProps = (state, ownProps)=> {
+const mapStateToProps = state => {
   const categoriesRaw = state.categories
   const categories = Object.keys(categoriesRaw).filter(key => !categoriesRaw[key].deleted).map(key => ({
       id: key,
@@ -75,7 +78,6 @@ const mapStateToProps = (state, ownProps)=> {
     categories: categories,
     user: state.user,
     posts: posts,
-    updateTime: state.updateTime
   }
 }
 
