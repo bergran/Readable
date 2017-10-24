@@ -10,6 +10,7 @@ import CreatePost from "../CreatePost";
 import CreateComment from "../CreateComment";
 import EditPost from '../EditPost'
 import EditComment from '../EditComment'
+import Popup from '../Popup'
 
 
 class App extends Component {
@@ -26,6 +27,9 @@ class App extends Component {
                 ]}
               />
           </Nav>
+          <Popup>
+              <CreatePost />
+          </Popup>
           <Route
             exact
             path='/'
@@ -33,27 +37,27 @@ class App extends Component {
           />
           <Route
             exact
-            path='/categories/:category'
+            path='/:category'
             component={CategoryPage}
           />
           <Route
               exact
-              path='/categories/:category/add'
+              path='/:category?add'
               component={CreatePost}
           />
           <Route
               exact
-              path='/posts/:post'
+              path='/:category/:post'
               component={PostPage}
           />
           <Route
               exact
-              path='/posts/:post/add'
+              path='/:category/:post/add'
               component={CreateComment}
           />
           <Route
               exact
-              path='/posts/:post/edit'
+              path='/:category/:post/edit'
               component={EditPost}
           />
           <Route
