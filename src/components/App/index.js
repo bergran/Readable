@@ -27,9 +27,7 @@ class App extends Component {
                 ]}
               />
           </Nav>
-          <Popup>
-              <CreatePost />
-          </Popup>
+          <Popup />
           <Route
             exact
             path='/'
