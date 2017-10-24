@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import './styles.css'
+import { connect } from 'react-redux'
 
 class Popup extends Component {
     render () {
-        const { children } = this.props
+        const { popup } = this.props
         return (
+            popup &&
             <section className="popup">
-                { children }
+                { popup }
             </section>
         )
     }
 }
 
-export default Popup
+const mapStateToProps = state => ({
+    popup: state.popup
+})
+
+export default connect(mapStateToProps)(Popup)
