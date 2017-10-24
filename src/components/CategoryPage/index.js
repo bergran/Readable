@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom'
 import './styles.css'
 import '../../assest/font-awesome/css/font-awesome.min.css'
 import { LoadingItem } from '../LoadingItem'
+import {updateChildren} from "../../actions/popup";
+import CreatePost from '../CreatePost'
+import Dialog from '../Dialog'
 
 class CategoryPage extends Component {
 
@@ -17,8 +20,18 @@ class CategoryPage extends Component {
         }
     }
 
+    handleCreatePost = () => {
+        const { updateChildren } = this.props
+        const dialog = (
+            <Dialog>
+                <CreatePost />
+            </Dialog>
+        )
+        updateChildren(dialog)
+    }
+
     componentDidMount () {
-        const { match, fillPosts, updateTime } = this.props
+        const { match, fillPosts } = this.props
         const category = match.params.category
         fillPosts(category)
             .then(data => {
@@ -34,9 +47,12 @@ class CategoryPage extends Component {
                 <section className='category-page-header'>
                     <h1 className='category-page-header-title'>{ Capitalize(match.params.category) }</h1>
                     <section className='category-page-create-post-section'>
-                        <Link to={`/${match.params.category}?add`} className='category-page-button category-page-button-text'>
+                        <button
+                            className={'category-page-button category-page-button-text'}
+                            onClick={this.handleCreatePost}
+                        >
                             <i className='fa fa-plus-circle' aria-hidden="true"></i>
-                        </Link>
+                        </button>
                     </section>
                 </section>
                 <section className='category-page-posts'>
@@ -70,7 +86,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fillPosts: category => dispatch(fillPostCategoryThunk(category))
+        fillPosts: category => dispatch(fillPostCategoryThunk(category)),
+        updateChildren: dialog => dispatch(updateChildren(dialog))
     }
 }
 

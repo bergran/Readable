@@ -1,0 +1,13 @@
+.dialog {
+    background-color: #9f9897;
+    width: 600px;
+    padding: 1em;
+    border-radius: 2em;
+}
+
+@media screen and (max-width: 800px) {
+    .dialog {
+        width: 200px;
+        padding: 0.5em
+    }
+}
