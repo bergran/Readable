@@ -15,6 +15,9 @@ import { getUTCFormat, Capitalize } from "../../utils/tools";
 import { LoadingItem } from '../LoadingItem'
 import '../../assest/font-awesome/css/font-awesome.min.css'
 import CreateComment from '../CreateComment'
+import {updateChildren} from "../../actions/popup";
+import Dialog from '../Dialog'
+import EditPost from '../EditPost'
 
 
 class PostPage extends Component {
@@ -57,8 +60,13 @@ class PostPage extends Component {
     }
 
     handleEdit = () => {
-        const { history, match } = this.props
-        history.push(`/posts/${match.params.post}/edit`)
+        const { post, openPopup } = this.props
+        const popup = (
+            <Dialog>
+                <EditPost post={post}/>
+            </Dialog>
+        )
+        openPopup(popup)
     }
 
     handleDelete = () => {
@@ -109,7 +117,7 @@ class PostPage extends Component {
                             <article className={'post-page-header-article'}>
                                 <p>
                                     <strong>Category: </strong>
-                                    <Link to={`/categories/${post.category}`}>{Capitalize(post.category)}</Link>
+                                    <Link to={`/${post.category}`}>{Capitalize(post.category)}</Link>
                                 </p>
                             </article>
                             <VoteScore
@@ -184,7 +192,8 @@ const mapDispatchToProps = dispatch => ({
     fillComments: post => dispatch(fillCommentsPost(post)),
     voteUp: post => dispatch(voteUpPostThunk(post)),
     voteDown: post => dispatch(voteDownPostThunk(post)),
-    deletePost: postId => dispatch(deletePostThunk(postId))
+    deletePost: postId => dispatch(deletePostThunk(postId)),
+    openPopup: dialog => dispatch(updateChildren(dialog))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostPage)

@@ -9,6 +9,9 @@ import {
     deleteCommentThunk
 } from '../../thunks/thunks'
 import '../../assest/font-awesome/css/font-awesome.min.css'
+import {updateChildren} from "../../actions/popup";
+import Dialog from '../Dialog'
+import EditComment from '../EditComment'
 
 
 class CommentItem extends Component {
@@ -24,8 +27,12 @@ class CommentItem extends Component {
     }
 
     handleEdit = () => {
-        const { id, history } = this.props
-        history.push(`/comments/${id}/edit`)
+        const { openPopup, id } = this.props
+        const popup = (
+            <Dialog>
+                <EditComment comment={id} />
+            </Dialog>
+        )
     }
 
     handleDelete = () => {
@@ -90,7 +97,8 @@ const mapStateToProps = () => ({})
 const mapDispatchToProps = dispatch => ({
     voteUp: comment => dispatch(voteUpCommentThunk(comment)),
     voteDown: comment => dispatch(voteDownCommentThunk(comment)),
-    deleteComment: commentId => dispatch(deleteCommentThunk(commentId))
+    deleteComment: commentId => dispatch(deleteCommentThunk(commentId)),
+    openPopup: dialog => dispatch(updateChildren(dialog))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentItem)

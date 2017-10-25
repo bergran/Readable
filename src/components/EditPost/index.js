@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getPost, editPost } from '../../thunks/thunks'
 import { LoadingItem } from '../LoadingItem';
 import './styles.css'
+import {deleteChildren} from "../../actions/popup";
 
 class EditPost extends Component {
 
@@ -16,8 +17,8 @@ class EditPost extends Component {
     }
 
     componentDidMount () {
-        const { getPost, match } = this.props
-        getPost(match.params.post)
+        const { getPost, post } = this.props
+        getPost(post.id)
             .then(data => {
                 this.setState({isLoading: false})
             })
@@ -38,12 +39,11 @@ class EditPost extends Component {
     handleSubmit = () => {
         const formValid = this.areValid()
         if (formValid) {
-            const { match, editPost, history } = this.props
+            const { postId, editPost, closeModal } = this.props
             const { inputs } =  this.state
-            const postId = match.params.post
             editPost(postId, inputs.title.value, inputs.post.value)
                 .then(data => {
-                    history.push(`/posts/${postId}`)
+                    closeModal()
                 })
         }
     }
@@ -87,17 +87,12 @@ class EditPost extends Component {
     }
 }
 
-const mapStateToProps = (state, ownprops) => {
-    const postId = ownprops.match.params.post
-    const post = state.posts.filter(post => post.id === postId)
-    return {
-        post: post.length === 1 ? post[0] : {id: postId}
-    }
-}
+const mapStateToProps = state => ({})
 
 const mapDispatchToProps = dispatch => ({
     getPost: post => dispatch(getPost(post)),
-    editPost: (id, title, body) => dispatch(editPost(id, title, body))
+    editPost: (id, title, body) => dispatch(editPost(id, title, body)),
+    closeModal: () => dispatch(deleteChildren())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPost)

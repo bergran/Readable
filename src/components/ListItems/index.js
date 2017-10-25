@@ -20,7 +20,6 @@ class ListItems extends Component {
     handleClick = to => this.props.push(to)
 
     handleSelect = event => {
-        console.log(event.target.value)
         this.setState({
             sortAttr: event.target.value
         })
