@@ -17,6 +17,7 @@ class App extends Component {
   render() {
     return (
       <section className="App">
+          <Popup />
           <Nav
               title='Readable'
           >
@@ -27,7 +28,6 @@ class App extends Component {
                 ]}
               />
           </Nav>
-          <Popup />
           <Route
             exact
             path='/'
@@ -42,11 +42,6 @@ class App extends Component {
               exact
               path='/:category/:post'
               component={PostPage}
-          />
-          <Route
-              exact
-              path='/comments/:comment/edit'
-              component={EditComment}
           />
       </section>
     )
