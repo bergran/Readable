@@ -45,8 +45,8 @@ class Home extends Component {
                       items={posts}
                       push={history.push}
                       sortAttrs={[
-                          {value: 'timestamp', title: 'newest'},
-                          {value: '-timestamp', title: 'oldest'},
+                          {value: '-timestamp', title: 'newest'},
+                          {value: 'timestamp', title: 'oldest'},
                           {value: '-voteScore', title: 'max-vote'},
                           {value: 'voteScore', title: 'min-vote'}
                       ]}
