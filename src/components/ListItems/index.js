@@ -13,7 +13,7 @@ class ListItems extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            sortAttr: ''
+            sortAttr: props.sortAttrs.length > 0 ? props.sortAttrs[0].value : ''
         }
     }
 
