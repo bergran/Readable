@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ListItems from "../ListItems/index";
 import { Capitalize } from '../../utils/tools'
-import { fillPostCategoryThunk } from "../../thunks/thunks";
-import { Link } from 'react-router-dom'
+import { fillPostCategoryThunk, createPost } from "../../thunks/thunks";
 import './styles.css'
 import '../../assest/font-awesome/css/font-awesome.min.css'
 import { LoadingItem } from '../LoadingItem'
-import {updateChildren} from "../../actions/popup";
+import {deleteChildren, updateChildren} from "../../actions/popup";
 import CreatePost from '../CreatePost'
 import Dialog from '../Dialog'
 
@@ -21,10 +20,14 @@ class CategoryPage extends Component {
     }
 
     handleCreatePost = () => {
-        const { updateChildren, match } = this.props
+        const { updateChildren, match, closePopup, addPost } = this.props
         const dialog = (
             <Dialog>
-                <CreatePost category={match.params.category}/>
+                <CreatePost
+                    category={match.params.category}
+                    closePopup={closePopup}
+                    addPost={addPost}
+                />
             </Dialog>
         )
         updateChildren(dialog)
@@ -63,8 +66,8 @@ class CategoryPage extends Component {
                                 items={posts}
                                 push={history.push}
                                 sortAttrs={[
-                                    {value: 'timestamp', title: 'newest'},
-                                    {value: '-timestamp', title: 'oldest'},
+                                    {value: '-timestamp', title: 'newest'},
+                                    {value: 'timestamp', title: 'oldest'},
                                     {value: '-voteScore', title: 'max-vote'},
                                     {value: 'voteScore', title: 'min-vote'}
                                 ]}
@@ -93,7 +96,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
     return {
         fillPosts: category => dispatch(fillPostCategoryThunk(category)),
-        updateChildren: dialog => dispatch(updateChildren(dialog))
+        updateChildren: dialog => dispatch(updateChildren(dialog)),
+        closePopup: () => dispatch(deleteChildren()),
+        addPost: post => dispatch(createPost(post)),
     }
 }
 

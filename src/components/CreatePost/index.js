@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { createPost } from "../../thunks/thunks";
 import NewItem from '../NewItem'
 import './styles.css'
 import uuid4 from 'uuid'
-import { deleteChildren } from '../../actions/popup'
 
 class CreatePost extends Component {
 
@@ -17,7 +14,7 @@ class CreatePost extends Component {
         const formValid = this.areValid()
         if (formValid) {
             // send new post
-            const { addPost, category, closeModal } = this.props
+            const { addPost, category, closePopup } = this.props
             const { title, author, post } = this.state
             const uuid = uuid4()
             addPost({
@@ -28,7 +25,7 @@ class CreatePost extends Component {
                 author: author.value,
                 category: category
             }).then(post =>
-                closeModal()
+                closePopup()
             )
         } // else do nothing
     }
@@ -66,11 +63,4 @@ class CreatePost extends Component {
     }
 }
 
-const mapStateToProps = state => state
-
-const mapDispatchToProps = dispatch => ({
-    addPost: post => dispatch(createPost(post)),
-    closeModal: () => dispatch(deleteChildren())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePost)
+export default CreatePost
