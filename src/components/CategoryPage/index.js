@@ -21,10 +21,10 @@ class CategoryPage extends Component {
     }
 
     handleCreatePost = () => {
-        const { updateChildren } = this.props
+        const { updateChildren, match } = this.props
         const dialog = (
             <Dialog>
-                <CreatePost />
+                <CreatePost category={match.params.category}/>
             </Dialog>
         )
         updateChildren(dialog)

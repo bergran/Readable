@@ -4,17 +4,48 @@
     padding: 1em;
     border-radius: 2em;
     border: 2px solid #ff6908;
+    box-sizing: border-box;
+}
+
+.dialog-header {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.dialog-button {
+    position: absolute;
+    right: 0;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    border: none;
+}
+
+.dialog-button-danger {
+    /*border: 1px red solid;*/
+    /*color: red;*/
+    background-color: #c40911;
+    color: #FFFFFF;
 }
 
 @media screen and (max-width: 800px) {
     .dialog {
         width: 100%;
-        height: 80vh;
+        height: 100%;
         padding: 0;
         border-radius: 0;
+        border: none;
     }
 
     .dialog-body {
         width: 100%;
+    }
+
+    .dialog-button {
+        width: 50px;
+        height: 100%;
     }
 }
