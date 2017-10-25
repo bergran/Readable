@@ -5,7 +5,7 @@ class Category extends Component {
 
     handleClick = () => {
         const { onClick, path } = this.props
-        onClick(`categories/${path}`)
+        onClick(`${path}`)
     }
 
     render () {

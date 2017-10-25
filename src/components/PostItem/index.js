@@ -11,8 +11,8 @@ import VoteScore from '../VoteScore'
 class PostItem extends Component {
 
     handleClick = () => {
-        const { onClick, id } = this.props
-        onClick(`/posts/${id}`)
+        const { onClick, id, category } = this.props
+        onClick(`/${category}/${id}`)
     }
 
     handleDelete = () => {

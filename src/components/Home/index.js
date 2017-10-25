@@ -72,6 +72,7 @@ const mapStateToProps = state => {
       timestamp: post.timestamp,
       voteScore: post.voteScore,
       author: post.author,
+      category: post.category,
       comments: post.comments
     }))
   return {

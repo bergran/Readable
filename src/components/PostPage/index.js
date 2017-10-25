@@ -70,19 +70,20 @@ class PostPage extends Component {
     }
 
     render () {
-        const { post } = this.props
+        const { post, match } = this.props
         const { isLoading } = this.state
-
+        const category = match.params.category
         if (isLoading) {
             return (
                 <LoadingItem />
             )
         }
-        if (Object.keys(post).length === 0 || post.deleted) {
+        if (Object.keys(post).length === 0 || post.category !== category || post.deleted) {
             return (
                 <section className={'post-page-container'}>
                     <p className={'post-page-container-text'}>
-                        Sorry, we could not get this post. Maybe this post was deleted or doesnt exist :'(
+                        Sorry, we could not get this post. Maybe this post was deleted or
+                        doesnt exist :'(
                     </p>
                     <p className={'post-page-container-text'}>
                         Go to <Link to={'/'}>Home</Link>

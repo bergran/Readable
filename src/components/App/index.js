@@ -40,11 +40,6 @@ class App extends Component {
           />
           <Route
               exact
-              path='/:category?add'
-              component={CreatePost}
-          />
-          <Route
-              exact
               path='/:category/:post'
               component={PostPage}
           />
