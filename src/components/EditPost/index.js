@@ -10,25 +10,11 @@ class EditPost extends Component {
 
     constructor (props) {
         super(props)
-        this.state = {
-            isLoading: true,
-            inputs: {}
-        }
-    }
-
-    componentDidMount () {
-        const { getPost, post } = this.props
-        getPost(post.id)
-            .then(data => {
-                this.setState({isLoading: false})
-            })
-            .catch(data => {
-                this.setState({isLoading: false})
-            })
+        this.state = {}
     }
 
     handleChange = inputRaw => {
-        let { inputs } = this.state
+        const inputs = this.state
         inputs[inputRaw.name] = {
             isValid: inputRaw.isValid,
             value: inputRaw.value
@@ -49,7 +35,7 @@ class EditPost extends Component {
     }
 
     areValid = () => {
-        const { inputs } = this.state
+        const inputs = this.state
         const keys = Object.keys(inputs)
         return keys.filter(key => inputs[key].isValid).length === keys.length
     }

@@ -62,6 +62,12 @@ class CategoryPage extends Component {
                                 type='posts'
                                 items={posts}
                                 push={history.push}
+                                sortAttrs={[
+                                    {value: 'timestamp', title: 'newest'},
+                                    {value: '-timestamp', title: 'oldest'},
+                                    {value: '-voteScore', title: 'max-vote'},
+                                    {value: 'voteScore', title: 'min-vote'}
+                                ]}
                             />
                             :
                             <section>
