@@ -6,10 +6,10 @@ import { connect } from 'react-redux'
 import {
     voteUpCommentThunk,
     voteDownCommentThunk,
-    deleteCommentThunk
+    deleteCommentThunk, editComment
 } from '../../thunks/thunks'
 import '../../assest/font-awesome/css/font-awesome.min.css'
-import {updateChildren} from "../../actions/popup";
+import {deleteChildren, updateChildren} from "../../actions/popup";
 import Dialog from '../Dialog'
 import EditComment from '../EditComment'
 
@@ -27,12 +27,36 @@ class CommentItem extends Component {
     }
 
     handleEdit = () => {
-        const { openPopup, id } = this.props
+        const {
+            openPopup,
+            editComment,
+            closePopup,
+            id,
+            author,
+            parentId,
+            deleted,
+            deleteParent,
+            timestamp,
+            body
+        } = this.props
         const popup = (
             <Dialog>
-                <EditComment comment={id} />
+                <EditComment
+                    comment={{
+                        id,
+                        author,
+                        parentId,
+                        deleted,
+                        deleteParent,
+                        timestamp,
+                        body,
+                    }}
+                    editComment={editComment}
+                    closePopup={closePopup}
+                />
             </Dialog>
         )
+        openPopup(popup)
     }
 
     handleDelete = () => {
@@ -98,7 +122,9 @@ const mapDispatchToProps = dispatch => ({
     voteUp: comment => dispatch(voteUpCommentThunk(comment)),
     voteDown: comment => dispatch(voteDownCommentThunk(comment)),
     deleteComment: commentId => dispatch(deleteCommentThunk(commentId)),
-    openPopup: dialog => dispatch(updateChildren(dialog))
+    openPopup: dialog => dispatch(updateChildren(dialog)),
+    closePopup: () => dispatch(deleteChildren()),
+    editComment: (id, body) => dispatch(editComment(id, body))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentItem)
