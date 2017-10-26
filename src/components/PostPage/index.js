@@ -157,6 +157,7 @@ class PostPage extends Component {
                         postId={post.id}
                     />
                     <ListItems
+                        title={`Comments ${post.comments}`}
                         type='comments'
                         items={comments}
                         sortAttrs={[
