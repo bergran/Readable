@@ -8,6 +8,9 @@ import Nav from '../Nav'
 import NavBarContainer from "../NavBarContainer";
 import Popup from '../Popup'
 
+/**
+*   This compoment renders popup, nav and home, category page or post page
+**/
 
 class App extends Component {
   render() {
