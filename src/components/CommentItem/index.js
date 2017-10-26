@@ -12,9 +12,38 @@ import '../../assest/font-awesome/css/font-awesome.min.css'
 import {deleteChildren, updateChildren} from "../../actions/popup";
 import Dialog from '../Dialog'
 import EditComment from '../EditComment'
+import PropTypes from 'prop-types'
 
+
+/**
+* container that renders a comment item with a vote score system, delete system, openPopup and edit comment. This
+* container has been linked to redux
+*
+* @prop id(string): it's the comment id
+* @prop author(string): it's the author id
+* @prop parentId(string): it's post parent comment id
+* @prop deleted(bool): it's a flag that said if comment is deleted
+* @prop deleteParent(bool): it's a flag that said if parent comment is deleted
+* @prop body(string): it's body comment
+* @prop voteScore(int): it's comment score
+* @prop editComment(func): dispatch a editComment function
+* @prop voteDown(func): dispatch a voteDown function
+* @prop voteUp(func): dispatch a voteUp function
+* @prop deleteComment(func): dispatch a deleteComment function
+* @prop closePopup(func): close popup
+* @prop openPopup(func): activate/change popup
+
+* */
 
 class CommentItem extends Component {
+
+    static defaultProps = {
+        body: '',
+        voteScore: 0,
+        deleted: true,
+        deleteParent: true,
+        author: 'Anon'
+    }
 
     handleUpVote = () => {
         const { id, voteUp } = this.props
@@ -126,5 +155,15 @@ const mapDispatchToProps = dispatch => ({
     closePopup: () => dispatch(deleteChildren()),
     editComment: (id, body) => dispatch(editComment(id, body))
 })
+
+CommentItem.propTypes = {
+    id: PropTypes.string.isRequired,
+    author: PropTypes.string,
+    parentId: PropTypes.string.isRequired,
+    deleted: PropTypes.bool,
+    deletedParent: PropTypes.bool,
+    body: PropTypes.string,
+    voteScore: PropTypes.number
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentItem)
