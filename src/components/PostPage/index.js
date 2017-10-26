@@ -6,7 +6,8 @@ import {
     fillCommentsPost,
     voteUpPostThunk,
     voteDownPostThunk,
-    deletePostThunk
+    deletePostThunk,
+    editPost
 } from '../../thunks/thunks'
 import { Link } from 'react-router-dom'
 import ListItems from '../ListItems'
@@ -15,7 +16,7 @@ import { getUTCFormat, Capitalize } from "../../utils/tools";
 import { LoadingItem } from '../LoadingItem'
 import '../../assest/font-awesome/css/font-awesome.min.css'
 import CreateComment from '../CreateComment'
-import {updateChildren} from "../../actions/popup";
+import {deleteChildren, updateChildren} from "../../actions/popup";
 import Dialog from '../Dialog'
 import EditPost from '../EditPost'
 
@@ -60,10 +61,10 @@ class PostPage extends Component {
     }
 
     handleEdit = () => {
-        const { post, openPopup } = this.props
+        const { post, openPopup, editPost, closePopup } = this.props
         const popup = (
             <Dialog>
-                <EditPost post={post}/>
+                <EditPost closePopup={closePopup} editPost={editPost} post={post}/>
             </Dialog>
         )
         openPopup(popup)
@@ -193,7 +194,9 @@ const mapDispatchToProps = dispatch => ({
     voteUp: post => dispatch(voteUpPostThunk(post)),
     voteDown: post => dispatch(voteDownPostThunk(post)),
     deletePost: postId => dispatch(deletePostThunk(postId)),
-    openPopup: dialog => dispatch(updateChildren(dialog))
+    openPopup: dialog => dispatch(updateChildren(dialog)),
+    editPost: (id, title, body) => dispatch(editPost(id, title, body)),
+    closePopup: () => dispatch(deleteChildren())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostPage)

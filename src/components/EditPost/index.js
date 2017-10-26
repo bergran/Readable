@@ -21,11 +21,11 @@ class EditPost extends Component {
     handleSubmit = () => {
         const formValid = this.areValid()
         if (formValid) {
-            const { post, editPost, closeModal } = this.props
+            const { post, editPost, closePopup } = this.props
             const inputs =  this.state
             editPost(post.id, inputs.title.value, inputs.post.value)
                 .then(data => {
-                    closeModal()
+                    closePopup()
                 })
         }
     }

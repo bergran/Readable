@@ -58,18 +58,13 @@ class TextArea extends Component {
 
     isValid = (value) => {
         const { isRequired, validations } = this.props
-        // If input has validations then will executed else just will put is valid
-        if (validations.length > 0) {
-            const resultValidation = this.handleValidations(value)
-            return resultValidation ||
-                (isRequired && resultValidation) ||
-                !isRequired
-        } else {
-            return true
-        }
+        const resultValidation = this.handleValidation(value)
+        return ((isRequired && resultValidation.length === validations.length) || (isRequired && value.length > 0) ||
+            !isRequired
+        )
     }
 
-    handleValidations = value => {
+    handleValidation = value => {
         const { validations } = this.props
         return validations.filter(validation => validation(value)).length === validations.length
     }

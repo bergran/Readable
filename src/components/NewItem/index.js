@@ -71,10 +71,8 @@ export default class NewItem extends Component {
                         placeholder='Author post'
                         onChange={this.handleChange}
                         isRequired
-                        validations={[(value => value.length > 5)]}
                         initialValue={initialAuthor}
                         value={author.value}
-                        onKeyPress={this.handleKeyPress}
                     />
                 }
                 {
@@ -86,7 +84,6 @@ export default class NewItem extends Component {
                             onChange={this.handleChange}
                             isRequired
                             initialValue={initialTitle}
-                            validations={[(value => value.length > 0)]}
                             value={title.value}
                         />
                 }
@@ -97,7 +94,6 @@ export default class NewItem extends Component {
                     isRequired
                     initialValue={initialItem}
                     placeholder={`Write here your ${item.toLowerCase()}`}
-                    validations={[(value => value.length > 0)]}
                     value={this.state[item].value}
                 />
                 <button

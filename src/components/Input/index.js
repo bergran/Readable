@@ -14,7 +14,6 @@ class Input extends Component {
     initialValue: '',
     onChange: () => ({}),
     validations: [],
-    value: ''
   }
 
   constructor (props) {
@@ -36,6 +35,7 @@ class Input extends Component {
   handleChange = (event) => {
     event.preventDefault()
     const { name, onChange } = this.props;
+    console.log(this.isValid(event.target.value))
     onChange({
         name,
         value: event.target.value,
@@ -45,20 +45,15 @@ class Input extends Component {
 
   handleValidation = value => {
       const { validations } = this.props
-      return validations.filter(validation => validation(value)).length === validations.length
+      return validations.filter(validation => validation(value)).length
   }
 
   isValid = (value) => {
       const { isRequired, validations } = this.props
-      // If input has validations then will executed else just will put is valid
-      if (validations.length > 0) {
-          const resultValidation = this.handleValidation(value)
-          return resultValidation ||
-              (isRequired && resultValidation) ||
-              !isRequired
-      } else {
-          return true
-      }
+      const resultValidation = this.handleValidation(value)
+      return ((isRequired && resultValidation.length === validations.length) || (isRequired && value.length > 0) ||
+          !isRequired
+      )
   }
 
   render () {
