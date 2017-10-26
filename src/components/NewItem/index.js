@@ -27,7 +27,7 @@ export default class NewItem extends Component {
         const { onSubmit, item } = this.props
 
         e.preventDefault()
-        this.props.onSubmit()
+        onSubmit()
         this.handleChange({name: item, value: '', isValid: false})
         this.handleChange({name: 'author', value: '', isValid: false})
         if (item === 'post') this.handleChange({name: 'title', value: '', isValid: false})

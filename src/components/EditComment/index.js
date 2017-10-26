@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import NewItem from '../NewItem'
-import {LoadingItem} from "../LoadingItem/index";
 import './styles.css'
 
 

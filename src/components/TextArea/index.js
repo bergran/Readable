@@ -42,7 +42,7 @@ class TextArea extends Component {
     }
 
     handleChange = e => {
-        const { name, onChange, validations, isRequired } = this.props
+        const { name, onChange } = this.props
         e.preventDefault()
         const value = e.target.value
 

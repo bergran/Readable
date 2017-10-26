@@ -6,10 +6,6 @@ import CategoryPage from "../CategoryPage";
 import PostPage from "../PostPage";
 import Nav from '../Nav'
 import NavBarContainer from "../NavBarContainer";
-import CreatePost from "../CreatePost";
-import CreateComment from "../CreateComment";
-import EditPost from '../EditPost'
-import EditComment from '../EditComment'
 import Popup from '../Popup'
 
 

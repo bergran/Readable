@@ -15,10 +15,7 @@ import {
     addComment,
     deleteComment
 } from "../actions/comment";
-import { updateTime } from "../actions/updateTime";
 import * as API from '../utils/api'
-
-const timeToUpdate = process.env.REACT_APP_UPDATE_TIME_INTERVAL
 
 export const fillCategoriesThunk = next => dispatch => {
   return API.getCategories()
@@ -158,20 +155,5 @@ export const deleteCommentThunk = commentId => dispatch => {
         .then(data => {
             dispatch(deleteComment(commentId))
         })
-}
-
-export const updaterThunk = thunkAction => (timeRaw, next = '') =>  {
-    const wrapper = dispatch => {
-        const time = timeRaw && timeRaw[`${thunkAction.name}${next}`]
-        if (!time || ((Date.now() - time) / 1000) >= timeToUpdate) {
-            dispatch(thunkAction(next))
-                .then(object => {
-                    const newUpdate = Date.now()
-                    dispatch(updateTime(newUpdate,  `${thunkAction.name}${next}`))
-                })
-        }
-        return Promise.resolve(null)
-    }
-    return wrapper
 }
 
