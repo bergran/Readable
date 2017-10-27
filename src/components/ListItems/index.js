@@ -3,6 +3,20 @@ import { SwitchItem } from '../SwitchItem'
 import './styles.css'
 import sortBy from 'sort-by'
 
+/**
+*
+* Component that render a list of any component item (CategoryItem, PostItem, CommentItem) sending all props that
+* receive
+*
+* @prop title(string):
+* @prop items(array):
+* @prop type(string):
+* @prop sortAttrs(array):
+*
+* @state sortAttr(string): It's the value which
+*
+* */
+
 class ListItems extends Component {
 
     static defaultProps = {

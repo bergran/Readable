@@ -2,6 +2,20 @@ import React, { Component } from 'react'
 import NewItem from '../NewItem'
 import './styles.css'
 
+/**
+*
+* Component that get post and render form with post data to edit it.
+*
+* @prop post(object): contains a post object (id, title, author, body, etc...)
+* @prop editPost(func): dispatch a edit post action
+* @prop closePopup(func): dispatch a close popup action
+*
+* @state title(object): contains value string var and isValid boolean var
+* @state post(object): contains value string var and isValid boolean var
+*
+* */
+
+
 class EditPost extends Component {
 
     constructor (props) {

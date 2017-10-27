@@ -2,6 +2,24 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './styles.css'
 
+/**
+*
+* Component that manage input control, when component did mount will call to onChange callback with the initial value
+* this is done to notice parent that initial value and is valid that value
+*
+* @prop initialValue(string): it's the initial value, this value is using on component did mount to notice parent
+* component
+* @prop value(string): it's the value that will render on input value. Input not manage value, it manage events that
+* change it
+* @prop isRequired(string): it's a flag which the value will be calculate into onChange event
+* @prop label(string): Input label
+* @prop placeholder(string): Input placeholder
+* @prop onchange(func): callback function that is called when onChange input activate
+* @prop validations(array): function array, these functions can receive value and check if value is valid
+* @prop type(string): Input type
+*
+* */
+
 class Input extends Component {
 
   static defaultProps = {
@@ -14,13 +32,6 @@ class Input extends Component {
     initialValue: '',
     onChange: () => ({}),
     validations: [],
-  }
-
-  constructor (props) {
-    super(props)
-    this.state = {
-      value: props.initialValue
-    }
   }
 
   componentDidMount () {

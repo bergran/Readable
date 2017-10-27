@@ -3,6 +3,18 @@ import NewItem from '../NewItem'
 import './styles.css'
 
 
+/**
+*
+* Component that get a comment object and render a form with the comment data to edit it.
+*
+* @prop comment(object): contains a comment object (id, parentId, delete, body...)
+* @prop closePopup(func): dispatch close Popup action
+* @prop editComment(func): dispatch edit comment action
+*
+* @state comment(object): contains value string var and isValid var
+*
+* */
+
 class EditComment extends Component {
 
     constructor (props) {

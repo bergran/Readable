@@ -6,6 +6,19 @@ import { LoadingItem } from "../LoadingItem";
 import './styles.css'
 
 
+/**
+*
+* Component that renders to all categories and all post with sort option, is linked to redux
+*
+* @prop categories(array): contains a list of categories objects
+* @prop posts(array): contains a list of post objects
+* @prop fillCategoriesPost(func): dispatch fill categories action
+* @prop fillPost(func): dispatch fill post action
+*
+* @state isLoading(bool): is a flag to render LoadingItem or categories and post list
+*
+* */
+
 class Home extends Component {
 
   constructor (props) {
@@ -77,7 +90,6 @@ const mapStateToProps = state => {
     }))
   return {
     categories: categories,
-    user: state.user,
     posts: posts,
   }
 }
