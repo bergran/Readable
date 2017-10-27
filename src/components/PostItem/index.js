@@ -8,6 +8,22 @@ import {
 import './styles.css'
 import VoteScore from '../VoteScore'
 
+/**
+*
+* component that renders a little container with information post, linked with redux
+*
+* @prop id(string): post id
+* @prop category(string): post category
+* @prop author(string): post author
+* @prop title(string): post title
+* @prop comments(int): post comments number
+* @prop onClick(func): callback function. its called when click into the title of post item
+* @prop deletePost(string): dispatch a deletePost action
+* @prop voteUp(func): dispatch a voteUp action
+* @prop voteDown(func): dispatch a voteDown action
+*
+* */
+
 class PostItem extends Component {
 
     handleClick = () => {

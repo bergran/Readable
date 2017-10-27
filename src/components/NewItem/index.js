@@ -4,6 +4,29 @@ import './styles.css'
 import classNames from 'classnames';
 import Input from "../Input/index";
 
+/**
+* Component that render a form which can used to create and edit post and comments
+*
+* @prop classes(array): contains an array with extra classNames
+* @prop label(string): it's the label for the specific item
+* @prop isValid(bool): it's a flag to enable or disable submit button
+* @prop item(string): it's a string to tell component that type will create and will be too the name of the input
+* @prop initialAuthor(string): it's initial state for author input
+* @prop initialItem(String): it's initial state for item input
+* @prop initialTitle(string): it's initial state for title input (optional, comment dont need it)
+* @prop edit(bool): it's a flag to tell component if will be an edit or create
+* @prop onSubmit(func): callback function that will be called when submit button it's clicked
+* @prop onChange(func): callback function that will be called when onChange of any input is active, will send an object
+* with input name(string), isValid calculated on input(boolean) and input value (string)
+*
+* @state title (object)(optional): this field only comes when item is a post. Contains isValid boolean var and
+* value string var
+* @state author(object): Contains isValid boolean var and value string var
+* @state post/comment(object): Contains isValid boolean var and value string var
+*
+ * */
+
+
 export default class NewItem extends Component {
 
     static defaultProps = {
