@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { deleteChildren } from '../../actions/popup'
 import './styles.css'
 import '../../assest/font-awesome/css/font-awesome.min.css'
-import { deleteChildren } from '../../actions/popup'
 
 
 /**
 * Dialog is a component that complete popup, is who manage components inside to draw a dialog popup with a close button,
 * is linked with redux
 *
-* @prop children(node): component to render inside dialog
-* @prop onClose(func): dispatch onClose popup action
+* @stateRedux children(node): component to render inside dialog
+*
+* @action onClose(func): dispatch onClose popup action
 *
 * */
 
 class Dialog extends Component {
+
+    static propTypes = {
+        children: PropTypes.node.isRequired
+    }
 
     handleClose = () => {
         const { onClose } = this.props

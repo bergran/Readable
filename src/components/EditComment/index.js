@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import NewItem from '../NewItem'
 import './styles.css'
 
@@ -7,15 +8,25 @@ import './styles.css'
 *
 * Component that get a comment object and render a form with the comment data to edit it.
 *
-* @prop comment(object): contains a comment object (id, parentId, delete, body...)
-* @prop closePopup(func): dispatch close Popup action
-* @prop editComment(func): dispatch edit comment action
+* @param comment(object): contains a comment object (id, parentId, delete, body...)
+*
+* @action closePopup(func): dispatch close Popup action
+* @action editComment(func): dispatch edit comment action
 *
 * @state comment(object): contains value string var and isValid var
 *
 * */
 
 class EditComment extends Component {
+
+    static propTypes = {
+        comment: PropTypes.shape({
+            delete: PropTypes.bool,
+            parentDelete: PropTypes.bool,
+            id: PropTypes.string,
+            body: PropTypes.string
+        })
+    }
 
     constructor (props) {
         super(props)

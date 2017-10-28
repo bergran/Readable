@@ -19,19 +19,20 @@ import PropTypes from 'prop-types'
 * container that renders a comment item with a vote score system, delete system, openPopup and edit comment. This
 * container has been linked to redux
 *
-* @prop id(string): it's the comment id
-* @prop author(string): it's the author id
-* @prop parentId(string): it's post parent comment id
-* @prop deleted(bool): it's a flag that said if comment is deleted
-* @prop deleteParent(bool): it's a flag that said if parent comment is deleted
-* @prop body(string): it's body comment
-* @prop voteScore(int): it's comment score
-* @prop editComment(func): dispatch a editComment function
-* @prop voteDown(func): dispatch a voteDown function
-* @prop voteUp(func): dispatch a voteUp function
-* @prop deleteComment(func): dispatch a deleteComment function
-* @prop closePopup(func): close popup
-* @prop openPopup(func): activate/change popup
+* @stateRedux id(string): it's the comment id
+* @stateRedux author(string): it's the author id
+* @stateRedux parentId(string): it's post parent comment id
+* @stateRedux deleted(bool): it's a flag that said if comment is deleted
+* @stateRedux deleteParent(bool): it's a flag that said if parent comment is deleted
+* @stateRedux body(string): it's body comment
+* @stateRedux voteScore(int): it's comment score
+*
+* @action editComment(func): dispatch a editComment function
+* @action voteDown(func): dispatch a voteDown function
+* @action voteUp(func): dispatch a voteUp function
+* @action deleteComment(func): dispatch a deleteComment function
+* @action closePopup(func): close popup
+* @action openPopup(func): activate/change popup
 
 * */
 

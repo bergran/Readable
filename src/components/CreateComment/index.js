@@ -10,7 +10,8 @@ import './styles.css'
 * container that renders a NewItem container. Create comment handle submit and change from NewItem.
 *
 * @prop postId(string): it's id post
-* @prop addComment(func): dispatch addComment action
+*
+* @action addComment(func): dispatch addComment action
 *
 * @state author(object): it's author from input, contains isValid boolean var and value string var
 * @state comment(object): it's comment from input, contains isValid boolean var and value string var

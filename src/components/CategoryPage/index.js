@@ -17,12 +17,12 @@ import Dialog from '../Dialog'
 * popup with a new post form
 *
 *
-* @prop posts(array): contains all post from category id
-* @prop match(object): this object come from react-router-dom, has attribute params to get category id
-* @prop history(object): this object come from react-router-dom, it has been used to add to post items
-* @prop updateChildren(func): dispatch function from mapDispatchToProps that activate/change popup
-* @prop closePopup(func): dispatch function from mapDispatchToProps that closePopup
-* @prop addPost(func): dispatch function from mapDispatchToProps that add a new post
+* @param posts(array): contains all post from category id
+*
+* @action fillPost(func): dispatch fillPost action
+* @action updateChildren(func): dispatch function from mapDispatchToProps that activate/change popup
+* @action closePopup(func): dispatch function from mapDispatchToProps that closePopup
+* @action addPost(func): dispatch function from mapDispatchToProps that add a new post
 *
 * @state isLoading(bool): is a flag to know the page that is loading
 * */

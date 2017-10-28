@@ -1,23 +1,32 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { SwitchItem } from '../SwitchItem'
-import './styles.css'
 import sortBy from 'sort-by'
+import './styles.css'
 
 /**
 *
 * Component that render a list of any component item (CategoryItem, PostItem, CommentItem) sending all props that
 * receive
 *
-* @prop title(string):
-* @prop items(array):
-* @prop type(string):
-* @prop sortAttrs(array):
+* @param title(string): list item title
+* @param items(array): list items as object
+* @param type(string): type list items
+* @param sortAttrs(array): array object of all attributtes that wants to sort, structure is value and title. Value is
+* used to sort and title to show into the select
 *
 * @state sortAttr(string): It's the value which
 *
 * */
 
 class ListItems extends Component {
+
+    static propTypes = {
+        title: PropTypes.string,
+        items: PropTypes.array.isRequired,
+        type: PropTypes.string.isRequired,
+        sortAttrs: PropTypes.array
+    }
 
     static defaultProps = {
         title: '',

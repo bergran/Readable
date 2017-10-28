@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
     voteUpPostThunk,
@@ -12,19 +13,37 @@ import VoteScore from '../VoteScore'
 *
 * component that renders a little container with information post, linked with redux
 *
-* @prop id(string): post id
-* @prop category(string): post category
-* @prop author(string): post author
-* @prop title(string): post title
-* @prop comments(int): post comments number
-* @prop onClick(func): callback function. its called when click into the title of post item
-* @prop deletePost(string): dispatch a deletePost action
-* @prop voteUp(func): dispatch a voteUp action
-* @prop voteDown(func): dispatch a voteDown action
+* @param id(string): post id
+* @param category(string): post category
+* @param author(string): post author
+* @param title(string): post title
+* @param comments(int): post comments number
+* @param onClick(func): callback function. its called when click into the title of post item
+*
+*
+* @action deletePost(string): dispatch a deletePost action
+* @action voteUp(func): dispatch a voteUp action
+* @action voteDown(func): dispatch a voteDown action
 *
 * */
 
 class PostItem extends Component {
+
+    static propTypes = {
+        id: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired,
+        author: PropTypes.string,
+        title: PropTypes.string,
+        comments: PropTypes.number,
+        onClick: PropTypes.func
+    }
+
+    static defaultProps = {
+        author: '',
+        title: '',
+        comments: 0,
+        onClick: () => ({})
+    }
 
     handleClick = () => {
         const { onClick, id, category } = this.props

@@ -1,5 +1,5 @@
-import './styles.css'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
     getPost,
@@ -19,9 +19,43 @@ import CreateComment from '../CreateComment'
 import {deleteChildren, updateChildren} from "../../actions/popup";
 import Dialog from '../Dialog'
 import EditPost from '../EditPost'
+import './styles.css'
 
+
+
+/**
+*
+* Component that render a post page. this is a post information with edit, delete post and create comment to the same
+* post, this component is linked to redux.
+*
+* @param post(object): contains information about post (id, category, comments, author, title etc...)
+* @param comment(array): comment object list, contains the comment info about the post render
+*
+* @action addPost(func): dispatch addPost action
+* @action openPopup(func): dispatch openPopup action
+* @action editPost(func): dispatch editPost action
+* @action deletePost(func): dispatch deletePost action
+* @action voteUp(func): dispatch voteUp Post action
+* @action voteDown(func): dispatch voteDown Post action
+* @action closePopup(func): dispatch closePopup action
+* @action fillComments(func): dispatch fillComments action
+*
+* */
 
 class PostPage extends Component {
+
+    static propTypes = {
+        post: PropTypes.shape({
+            category: PropTypes.string,
+            deleted: PropTypes.bool,
+            id: PropTypes.string,
+            title: PropTypes.string,
+            author: PropTypes.string,
+            body: PropTypes.string,
+            comments: PropTypes.number,
+        }),
+        comments: PropTypes.array
+    }
 
     constructor (props) {
         super(props)

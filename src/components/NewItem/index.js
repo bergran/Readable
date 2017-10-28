@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import TextArea from '../TextArea'
-import './styles.css'
 import classNames from 'classnames';
 import Input from "../Input/index";
+import './styles.css'
 
 /**
 * Component that render a form which can used to create and edit post and comments
 *
-* @prop classes(array): contains an array with extra classNames
-* @prop label(string): it's the label for the specific item
-* @prop isValid(bool): it's a flag to enable or disable submit button
-* @prop item(string): it's a string to tell component that type will create and will be too the name of the input
-* @prop initialAuthor(string): it's initial state for author input
-* @prop initialItem(String): it's initial state for item input
-* @prop initialTitle(string): it's initial state for title input (optional, comment dont need it)
-* @prop edit(bool): it's a flag to tell component if will be an edit or create
-* @prop onSubmit(func): callback function that will be called when submit button it's clicked
-* @prop onChange(func): callback function that will be called when onChange of any input is active, will send an object
+* @param classes(array): contains an array with extra classNames
+* @param label(string): it's the label for the specific item
+* @param isValid(bool): it's a flag to enable or disable submit button
+* @param item(string): it's a string to tell component that type will create and will be too the name of the input
+* @param initialAuthor(string): it's initial state for author input
+* @param initialItem(String): it's initial state for item input
+* @param initialTitle(string): it's initial state for title input (optional, comment dont need it)
+* @param edit(bool): it's a flag to tell component if will be an edit or create
+* @param onSubmit(func): callback function that will be called when submit button it's clicked
+* @param onChange(func): callback function that will be called when onChange of any input is active, will send an object
 * with input name(string), isValid calculated on input(boolean) and input value (string)
 *
 * @state title (object)(optional): this field only comes when item is a post. Contains isValid boolean var and
@@ -28,6 +29,19 @@ import Input from "../Input/index";
 
 
 export default class NewItem extends Component {
+
+    static propTypes = {
+        classes: PropTypes.array,
+        label: PropTypes.string,
+        isValid: PropTypes.bool.isRequired,
+        item: PropTypes.string,
+        initialAuthor: PropTypes.string,
+        initialItem: PropTypes.string,
+        initialTitle: PropTypes.string,
+        edit: PropTypes.bool,
+        onSubmit: PropTypes.func,
+        onChange: PropTypes.func
+    }
 
     static defaultProps = {
         classes: [],
