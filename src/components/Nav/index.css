@@ -1,0 +1,21 @@
+.app-nav {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.app-nav-green {
+    background-color: #29bc00;
+}
+
+.navbar-right {
+    margin-left: auto;
+}
+
+.navbar-left {
+    margin-left: auto;
+}

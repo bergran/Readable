@@ -1,0 +1,37 @@
+.nav-bar-section {
+    /*width: 6em;*/
+    cursor: pointer;
+    height: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 1s;
+    user-select: none;
+}
+
+@media screen and (min-width: 900px) {
+    .nav-bar-section:hover {
+        background-color: #259600;
+    }
+}
+
+@media screen and (max-width: 899px) {
+    .nav-bar-section:active {
+        transition: background-color 0.2s ease-out;
+        background-color: #259600;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+}
+
+.nav-bar-text-white {
+    color: #fff;
+}
+
+.nav-bar-header {
+    text-align: center;
+}
+
+.nav-bar-title {
+    font-size: 1.25em;
+    margin: 0 8px;
+}

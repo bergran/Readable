@@ -1,0 +1,9 @@
+.home {
+    padding: 2em;
+}
+
+@media screen and (max-width: 800px) {
+    .home {
+        padding: 1em;
+    }
+}

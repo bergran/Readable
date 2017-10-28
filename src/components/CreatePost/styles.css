@@ -1,0 +1,19 @@
+.newitem-form-container-title {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+    border-bottom: 1px solid;
+    width: 100%;
+}
+
+.create-post-page-container {
+    padding: 1em;
+    background-color: #FFFFFF;
+}
+
+@media screen and (max-width: 800px) {
+
+    .create-post-page-container {
+        padding: 0.5em;
+    }
+
+}

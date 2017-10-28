@@ -1,0 +1,55 @@
+.post-item-container {
+    width: 400px;
+    height: 13em;
+    padding: 1em;
+    border-radius: 0.35em;
+    margin-bottom: 1em;
+    background: -webkit-linear-gradient(left top, #29bc00 50%, #ff6908); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #29bc00 50%, #ff6908); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #29bc00 50%, #ff6908); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #29bc00 50%, #ff6908); /* Standard syntax */
+}
+
+.post-item-container-attributes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.post-item-container-attribute {
+    margin-bottom: 0;
+    width: 10em;
+}
+
+.post-item-title {
+    font-size: 1.2em;
+    margin: 0.5em 0;
+    border-bottom: 1px black solid;
+    cursor: pointer;
+}
+
+.post-item-container-button {
+    border: none;
+    color: #fff;
+    height: 2em;
+}
+
+.post-item-container-button-danger {
+    background-color: #c40911;
+}
+
+.post-item-container-button-danger:hover {
+    background-color: #c40911;
+}
+
+.post-item-container-text {
+    margin: 0 0 1em 0;
+}
+
+@media screen and (max-width: 800px) {
+    .post-item-container {
+        width: 200px;
+    }
+}

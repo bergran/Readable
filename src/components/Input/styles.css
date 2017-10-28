@@ -1,0 +1,34 @@
+.input-container-out {
+    margin-bottom: 1.5em;
+    font-size: 1.2em;
+}
+
+.input-container-in {
+
+}
+
+.input {
+    width: 500px;
+    border: 1px solid blue;
+    box-sizing: border-box;
+    border-radius: 0.4em;
+    padding: 0.4em;
+}
+
+.input-container-label {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 700px) {
+
+    .input {
+        width: 100%;
+        font-size: 0.83em;
+    }
+
+    .input-container-out {
+        margin-bottom: 1em;
+        font-size: 1.6em;
+        width: 100%;
+    }
+}
