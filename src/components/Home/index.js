@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ListItems from "../ListItems/index";
 import { fillCategoriesThunk, fillPostsThunk } from "../../thunks/thunks";
@@ -6,7 +7,26 @@ import { LoadingItem } from "../LoadingItem";
 import './styles.css'
 
 
+/**
+*
+* Component that renders to all categories and all post with sort option, is linked to redux
+*
+* @stateRedux categories(array): contains a list of categories objects
+* @stateRedux posts(array): contains a list of post objects
+*
+* @action fillCategoriesPost(func): dispatch fill categories action
+* @action fillPost(func): dispatch fill post action
+*
+* @state isLoading(bool): is a flag to render LoadingItem or categories and post list
+*
+* */
+
 class Home extends Component {
+
+    static propTypes = {
+        categories: PropTypes.array,
+        posts: PropTypes.array
+    }
 
   constructor (props) {
     super(props)
@@ -77,7 +97,6 @@ const mapStateToProps = state => {
     }))
   return {
     categories: categories,
-    user: state.user,
     posts: posts,
   }
 }

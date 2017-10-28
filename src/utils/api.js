@@ -11,36 +11,34 @@ const headers = {
   'Authorization': authorization
 }
 
-// TODO (ABG) create response structure
-
 export const getCategories = () => {
-  return fetch(`http://${host}:3001/categories`, { headers })
+  return fetch(`http://${host}/categories`, { headers })
     .then(data => data.json())
     .then(raw => raw.categories)
 }
 
 export const getPostsCategory = category => {
-  return fetch(`http://${host}:3001/${category}/posts`, {headers})
+  return fetch(`http://${host}/${category}/posts`, {headers})
     .then(data => data.json())
 }
 
 export const getAllPost = () => {
-  return fetch(`http://${host}:3001/posts`, {headers})
+  return fetch(`http://${host}/posts`, {headers})
       .then(data => data.json())
 }
 
 export const getCommentsPost = post => {
-    return fetch(`http://${host}:3001/posts/${post}/comments`, {headers})
+    return fetch(`http://${host}/posts/${post}/comments`, {headers})
         .then(data => data.json())
 }
 
 export const getComment = comment => {
-  return fetch(`http://${host}:3001/comments/${comment}`, {headers})
+  return fetch(`http://${host}/comments/${comment}`, {headers})
         .then(data => data.json())
 }
 
 export const getPost = post => {
-  return fetch(`http://${host}:3001/posts/${post}`, {headers})
+  return fetch(`http://${host}/posts/${post}`, {headers})
         .then(data => data.json())
 }
 
@@ -52,7 +50,7 @@ export const addPost = ({
     category
   }) => {
   const timestamp = Date.now()
-  return fetch(`http://${host}:3001/posts`, {
+  return fetch(`http://${host}/posts`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'
@@ -71,7 +69,7 @@ export const addPost = ({
 }
 
 const votePost = (post, option) => {
-  return fetch(`http://${host}:3001/posts/${post}`, {
+  return fetch(`http://${host}/posts/${post}`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'
@@ -89,7 +87,7 @@ export const voteUpPost = post => votePost(post, upVote)
 export const voteDownPost = post => votePost(post, downVote)
 
 export const editPost = (id, title, body) => {
-  return fetch(`http://${host}:3001/posts/${id}`, {
+  return fetch(`http://${host}/posts/${id}`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'
@@ -107,7 +105,7 @@ export const editPost = (id, title, body) => {
 }
 
 export const deletePost = postId => {
-  return fetch(`http://${host}:3001/posts/${postId}`, {
+  return fetch(`http://${host}/posts/${postId}`, {
     headers,
     method: 'DELETE'
   })
@@ -125,7 +123,7 @@ export const addComment = ({
   author,
   parentId
 }) => {
-  return fetch(`http://${host}:3001/comments`, {
+  return fetch(`http://${host}/comments`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'
@@ -147,7 +145,7 @@ export const addComment = ({
 }
 
 const voteComment = (comment, option) => {
-  return fetch(`http://${host}:3001/comments/${comment}`, {
+  return fetch(`http://${host}/comments/${comment}`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'
@@ -165,7 +163,7 @@ export const voteUpComment = comment => voteComment(comment, upVote)
 export const voteDownComment = comment => voteComment(comment, downVote)
 
 export const editComment = (id, timestamp, body) => {
-  return fetch(`http://${host}:3001/comments/${id}`, {
+  return fetch(`http://${host}/comments/${id}`, {
     headers: {
       ...headers,
       'Content-Type': 'application/json'
@@ -183,7 +181,7 @@ export const editComment = (id, timestamp, body) => {
 }
 
 export const deleteComment = comment => {
-  return fetch(`http://${host}:3001/comments/${comment}`, {
+  return fetch(`http://${host}/comments/${comment}`, {
     headers,
     method: 'DELETE'
   })

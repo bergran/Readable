@@ -52,8 +52,6 @@ const updatePostComments = (post, commentsLength) => ({
     commentsLength
 })
 
-// TODO: Add thunk methods to Middleware
-
 export {
   fillPost,
   fillPostCategory,

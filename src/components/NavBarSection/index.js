@@ -11,8 +11,6 @@ import PropTypes from 'prop-types'
  * @param classNames (array): classNames that can be got the component
  * @param goBack (boolean): it's a flag to calculate if the section will redirect, will go back page
  * @param title (string): it's the name of the section
- * @param history (object): it's the property that react-router-dom pass to this component. It's used to go back or
- * any path
  *
  */
 

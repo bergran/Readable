@@ -3,6 +3,16 @@ import CategoryItem from '../CategoryItem'
 import PostItem from '../PostItem'
 import CommentItem from '../CommentItem'
 
+/**
+*
+* Component used for switch categories, posts or comments inside ListItems
+*
+* @param type(string): item type
+* @param {...props}(object): contain information about item that want to render
+*
+* */
+
+
 export const SwitchItem = (props) => {
     const { type } = props;
     let params = {...props}

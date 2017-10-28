@@ -1,9 +1,22 @@
 import React, { Component } from 'react'
-import './styles.css'
+import PropTypes from 'prop-types'
 import NewItem from '../NewItem'
 import uuid4 from 'uuid'
 import { connect } from 'react-redux'
 import { createComment } from "../../thunks/thunks";
+import './styles.css'
+
+/**
+* container that renders a NewItem container. Create comment handle submit and change from NewItem.
+*
+* @prop postId(string): it's id post
+*
+* @action addComment(func): dispatch addComment action
+*
+* @state author(object): it's author from input, contains isValid boolean var and value string var
+* @state comment(object): it's comment from input, contains isValid boolean var and value string var
+*
+* */
 
 class CreateComment extends Component {
 
@@ -56,6 +69,10 @@ class CreateComment extends Component {
             </section>
         )
     }
+}
+
+CreateComment.PropTypes = {
+    postId: PropTypes.string.isRequired
 }
 
 const mapStateToProps = () => ({})

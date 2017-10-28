@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import './styles.css'
 
 /**
@@ -10,10 +11,23 @@ import './styles.css'
 * @param onChange (func): callback that will be called when textarea change
 * @param placeholder (string): text that will show it into text area as placeholder
 * @param label (string): text that will be the label and showed to the user
+* @param isRequired (bool): flag to know if input is required or not, is part of validation
+* @param validations (array): function of validation, these functions will receive value and have to return a boolean
+*
 * */
 
 
 class TextArea extends Component {
+
+    static propTypes = {
+        initialValue: PropTypes.string,
+        name: PropTypes.string,
+        onChange: PropTypes.func,
+        placeholder: PropTypes.string,
+        label: PropTypes.string,
+        isRequired: PropTypes.bool,
+        validations: PropTypes.array
+    }
 
     static defaultProps = {
         initialValue: '',

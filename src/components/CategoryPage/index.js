@@ -10,6 +10,23 @@ import {deleteChildren, updateChildren} from "../../actions/popup";
 import CreatePost from '../CreatePost'
 import Dialog from '../Dialog'
 
+
+/**
+* Component that renders a category page, category page is a container linked to redux. CategoryPage has a post list
+* about category id. With category page, user can create a post clicking into the button, the button will active a
+* popup with a new post form
+*
+*
+* @param posts(array): contains all post from category id
+*
+* @action fillPost(func): dispatch fillPost action
+* @action updateChildren(func): dispatch function from mapDispatchToProps that activate/change popup
+* @action closePopup(func): dispatch function from mapDispatchToProps that closePopup
+* @action addPost(func): dispatch function from mapDispatchToProps that add a new post
+*
+* @state isLoading(bool): is a flag to know the page that is loading
+* */
+
 class CategoryPage extends Component {
 
     constructor (props) {

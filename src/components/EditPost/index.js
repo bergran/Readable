@@ -1,8 +1,33 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import NewItem from '../NewItem'
 import './styles.css'
 
+/**
+*
+* Component that get post and render form with post data to edit it.
+*
+* @param post(object): contains a post object (id, title, author, body, etc...)
+*
+* @action editPost(func): dispatch a edit post action
+* @action closePopup(func): dispatch a close popup action
+*
+* @state title(object): contains value string var and isValid boolean var
+* @state post(object): contains value string var and isValid boolean var
+*
+* */
+
+
 class EditPost extends Component {
+
+    static propTypes = {
+        post: PropTypes.shape({
+            id: PropTypes.string,
+            author: PropTypes.string,
+            title: PropTypes.string,
+            body: PropTypes.string
+        })
+    }
 
     constructor (props) {
         super(props)
