@@ -12,7 +12,11 @@ import TextArea from '../TextArea'
 
 it('renders without crashing category item', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<CategoryItem />, div);
+  ReactDOM.render(<CategoryItem
+      id={'test'}
+      path={'/test'}
+      onClick={() => ({})}
+  />, div);
 });
 
 it('renders without crashing input', () => {
@@ -28,25 +32,6 @@ it('renders without crashing input', () => {
 it('renders without crashing loading item', () => {
     const div = document.createElement('div');
     ReactDOM.render(<LoadingItem />, div);
-});
-
-it('renders without crashing loading item', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<Nav
-      title={'Prueba jest'}
-    >
-      <NavBarContainer
-          title={'NavBarContainer'}
-          sections={[
-            {title: 'prueba 1', path:'/'},
-            {title: 'prueba 2', path:'/'},
-            {title: 'prueba 3', path:'/'},
-            {title: 'prueba 4', path:'/'},
-            {title: 'prueba 5', path:'/'},
-            {title: 'prueba 6', path:'/'}
-        ]}
-      />
-    </Nav>, div);
 });
 
 it('renders without crash NewItem', () => {
